@@ -2,6 +2,21 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+Use Biome to replace ESLint
+https://biomejs.dev/guides/getting-started/
+
+add Biome VSCode extension
+```
+pnpm add --save-dev --save-exact @biomejs/biome
+pnpm biome init
+```
+
+To format and lint: `bun fmtlint`
+
+Add Shadcn UI: 
+https://ui.shadcn.com/docs/installation/next
+`pnpm dlx shadcn@latest init`
+
 First, run the development server:
 
 ```bash
