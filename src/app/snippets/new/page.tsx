@@ -1,5 +1,5 @@
 "use client";
-import { useActionState } from "react";
+import { useActionState, startTransition } from "react";
 import * as actions from "@/actions";
 
 //type Props = {};
@@ -9,8 +9,16 @@ const SnippetAddPage = (/*props: Props*/) => {
 		message: "",
 	}); //action is the updated server action!
 
+	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+		event.preventDefault();
+		const formData = new FormData(event.currentTarget);
+		startTransition(() => {
+			action(formData);
+		});
+	}
+
 	return (
-		<form action={action}>
+		<form onSubmit={handleSubmit}>
 			<h3 className="font-bold m-3">Add a Snippet</h3>
 			<div className="flex flex-col gap-4">
 				<div className="flex gap-4">
@@ -35,9 +43,13 @@ const SnippetAddPage = (/*props: Props*/) => {
 					/>
 				</div>
 
-				<div>{formState.message}</div>
+				{formState.message ? (
+					<div className="my-2 p-2 text-gray-700 bg-red-200 border rounded border-red-400">
+						{formState.message}
+					</div>
+				) : null}
 
-				<button type="submit" className="rounded p-2 bg-blue-400">
+				<button type="submit" className="rounded p-2 text-gray-700 bg-blue-400">
 					Add
 				</button>
 			</div>

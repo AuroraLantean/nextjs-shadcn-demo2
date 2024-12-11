@@ -7,23 +7,43 @@ export async function addSnippet(
 	formState: { message: string },
 	formData: FormData,
 ) {
-	return { message: "string invalid" };
+	try {
+		// Get formData from form name properties
+		const title = formData.get("title"); //as string
+		const code = formData.get("code");
 
-	/*// Get formData from form name properties
-	const title = formData.get("title") as string;
-	const code = formData.get("code") as string;
+		if (typeof title !== "string" || title.length < 3) {
+			return {
+				message: "Title must be longer",
+			};
+		}
+		if (typeof code !== "string" || code.length < 10) {
+			return {
+				message: "Code must be longer",
+			};
+		}
 
-	// Create a new record in the database
-	const snippet = await db.snippet.create({
-		data: {
-			title,
-			code,
-		},
-	});
-	console.log(snippet);
-
-	// Redirect the user back to the root route
-	redirect("/");*/
+		// add a new record in the database
+		const snippet = await db.snippet.create({
+			data: {
+				title,
+				code,
+			},
+		});
+		console.log("add a new snippet:", snippet);
+		//throw new Error("database failed");
+	} catch (err: unknown) {
+		if (err instanceof Error) {
+			return {
+				message: err.message,
+			};
+		}
+		return {
+			message: "Something went wrong...",
+		};
+	}
+	//Redirect the user back to the root route
+	redirect("/"); //should be the last, else NEXT_REDIRECT
 }
 
 export async function updateSnippet(id: number, code: string) {
