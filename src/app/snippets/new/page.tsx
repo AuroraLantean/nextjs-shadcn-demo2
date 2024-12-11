@@ -1,32 +1,16 @@
-import { db } from "@/db";
-import { redirect } from "next/navigation";
-import React from "react";
+"use client";
+import { useActionState } from "react";
+import * as actions from "@/actions";
 
 //type Props = {};
 
 const SnippetAddPage = (/*props: Props*/) => {
-	async function addDbSnippet(formData: FormData) {
-		"use server";
-
-		// Get formData from form name properties
-		const title = formData.get("title") as string;
-		const code = formData.get("code") as string;
-
-		// Create a new record in the database
-		const snippet = await db.snippet.create({
-			data: {
-				title,
-				code,
-			},
-		});
-		console.log(snippet);
-
-		// Redirect the user back to the root route
-		redirect("/");
-	}
+	const [formState, action] = useActionState(actions.addSnippet, {
+		message: "",
+	}); //action is the updated server action!
 
 	return (
-		<form action={addDbSnippet}>
+		<form action={action}>
 			<h3 className="font-bold m-3">Add a Snippet</h3>
 			<div className="flex flex-col gap-4">
 				<div className="flex gap-4">
@@ -50,6 +34,8 @@ const SnippetAddPage = (/*props: Props*/) => {
 						id="code"
 					/>
 				</div>
+
+				<div>{formState.message}</div>
 
 				<button type="submit" className="rounded p-2 bg-blue-400">
 					Add
