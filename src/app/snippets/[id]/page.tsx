@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import * as actions from "@/actions";
 
 type SnippetShowPageProps = {
 	params: Promise<{
@@ -18,6 +19,8 @@ export default async function SnippetShowPage(props: SnippetShowPageProps) {
 	if (!snippet) {
 		notFound();
 	}
+
+	const deleteSnippetAction = actions.deleteSnippet.bind(null, snippet.id);
 	//console.log("snippet:", snippet);
 	return (
 		<div>
@@ -30,12 +33,11 @@ export default async function SnippetShowPage(props: SnippetShowPageProps) {
 					>
 						Edit
 					</Link>
-					<Link
-						href={`/snippets/${snippet.id}/edit`}
-						className="p-2 border rounded"
-					>
-						Delete
-					</Link>
+					<form action={deleteSnippetAction}>
+						<button type="submit" className="p-2 border rounded">
+							Delete
+						</button>
+					</form>
 				</div>
 			</div>
 			<pre className="p-3 border rounded bg-gray-700 border-gray-200">

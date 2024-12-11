@@ -31,6 +31,11 @@ OR setup a local postgres database and run `pnpm dlx prisma init`
 Add the snippet model in `prisma/schema.prisma`, then run `pnpm dlx prisma migrate dev`
 then type the migration name = `add snippets`
 
+## Monaco Editor for React 
+https://github.com/suren-atoyan/monaco-react
+pnpm add @monaco-editor/react
+pnpm add @monaco-editor/react --legacy-peer-deps
+
 First, run the development server:
 
 ```bash
