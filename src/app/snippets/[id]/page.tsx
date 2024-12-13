@@ -1,5 +1,4 @@
 import * as actions from "@/actions";
-import { db } from "@/db";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -11,11 +10,7 @@ type SnippetShowPageProps = {
 export default async function SnippetShowPage(props: SnippetShowPageProps) {
 	//await new Promise((r) => setTimeout(r, 2000));
 	const { id } = await props.params;
-
-	const snippet = await db.snippet.findFirst({
-		where: { id: Number.parseInt(id) },
-	});
-
+	const snippet = await actions.readSnippet(id);
 	if (!snippet) {
 		notFound();
 	}
@@ -48,7 +43,7 @@ export default async function SnippetShowPage(props: SnippetShowPageProps) {
 }
 
 export async function generateStaticParams() {
-	const snippets = await db.snippet.findMany();
+	const snippets = await actions.readSnippets();
 	return snippets.map((snippet) => {
 		return {
 			id: snippet.id.toString(),

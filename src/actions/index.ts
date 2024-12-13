@@ -48,6 +48,18 @@ export async function addSnippet(
 	redirect("/"); //should be the last, else NEXT_REDIRECT
 }
 
+export async function readSnippet(id: string) {
+	const snippetId = Number.parseInt(id);
+	const snippet = await db.snippet.findFirst({
+		where: { id: snippetId },
+	});
+	return snippet;
+}
+export async function readSnippets() {
+	const snippets = await db.snippet.findMany();
+	return snippets;
+}
+
 export async function updateSnippet(id: number, code: string) {
 	await db.snippet.update({
 		where: { id },
