@@ -6,6 +6,7 @@ set dotenv-load
 #set export   ... to export all variables below as the environment variables
 alias s0 := dbstatus
 alias s1 := dbstart
+alias b := build
 dirpath := "/mnt/sda3/"
 #time := datetime("%Y")
 #time := datetime("%Y_%m_%d__%H_%M_%S")
@@ -13,7 +14,7 @@ dirpath := "/mnt/sda3/"
 #hello:#echo datetime("%Y_%m_%d__%H_%M_%S")
 hello:
 	echo "run"
-	bun dev
+	bun run dev
 #hello2:
 #  echo "Hello World $HASHCOST $time"
 
@@ -24,11 +25,11 @@ fmt:
 lint:
 	bunx biome lint --write ./src
 dev:
-	bun dev
+	bun run dev
 build:
-	bun build
+	bun run build
 start:
-	bun start
+	bun run start
 clean:
 	rm -r node_modules
 install:

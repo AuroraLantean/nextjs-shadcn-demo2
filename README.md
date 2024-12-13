@@ -36,10 +36,16 @@ https://github.com/suren-atoyan/monaco-react
 pnpm add @monaco-editor/react
 pnpm add @monaco-editor/react --legacy-peer-deps
 
-First, run the development server:
+Run in development mode:
 
 ```bash
-bun dev
+bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+Run in production mode:
+```bash
+bun run build
+bun run start
+```

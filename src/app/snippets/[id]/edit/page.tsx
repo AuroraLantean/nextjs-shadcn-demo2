@@ -1,7 +1,6 @@
 import SnippetEditForm from "@/components/snippet-edit-form";
 import { db } from "@/db";
 import { notFound } from "next/navigation";
-import * as actions from "@/actions";
 
 type SnippetEditPageProps = {
 	params: Promise<{

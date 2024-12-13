@@ -1,7 +1,7 @@
+import * as actions from "@/actions";
 import { db } from "@/db";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import * as actions from "@/actions";
 
 type SnippetShowPageProps = {
 	params: Promise<{
@@ -46,6 +46,16 @@ export default async function SnippetShowPage(props: SnippetShowPageProps) {
 		</div>
 	);
 }
+
+export async function generateStaticParams() {
+	const snippets = await db.snippet.findMany();
+	return snippets.map((snippet) => {
+		return {
+			id: snippet.id.toString(),
+		};
+	});
+}
+
 /*[ Server ] Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
   {}
  */
