@@ -15,7 +15,12 @@ To format and lint: `bun fmtlint`
 
 Add Shadcn UI: 
 https://ui.shadcn.com/docs/installation/next
-`pnpm dlx shadcn@latest init`
+yes for CSS variables
+```
+pnpm dlx shadcn@latest init
+pnpm dlx shadcn@latest add sidebar-07
+pnpm add next-themes
+```
 
 Add Prisma
 https://www.prisma.io/docs/getting-started/quickstart-sqlite
