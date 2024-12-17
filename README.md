@@ -1,5 +1,11 @@
 # Demo2-NextJs15-React19-Shadcn
 
+## Warning
+Unpin crypto wallet extensions in the Chrome Browser, or you may get this error:
+```
+TypeError: Cannot redefine property: StacksProvider... chrome-extension://idnnbdplmphpflfnlkomgpfbpcgelopg/inpage.js (27:40749)
+```
+
 ## Getting Started
 
 Use Biome to replace ESLint

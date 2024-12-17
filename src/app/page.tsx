@@ -20,7 +20,7 @@ export default async function HomePage() {
 	});
 
 	return (
-		<div>
+		<div className="sm:px-10">
 			<div className="flex m-2 justify-between items-center">
 				<h1 className="text-xl font-bold">Snippets</h1>
 				<Link href="/snippets/new" className="border p-2 rounded">
