@@ -4,6 +4,10 @@ import { usePathname } from "next/navigation";
 import { Button, buttonVariants } from "./ui/button";
 import { ModeToggle } from "./mode-toggle";
 
+/*const ConnectWallet = dynamic(() => import('@/components/connect-wallet'), {
+  ssr: false
+});
+*/
 export default function HeaderCc() {
 	const pathname = usePathname();
 	const active = (path: string) =>
