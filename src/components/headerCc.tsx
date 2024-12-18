@@ -12,7 +12,7 @@ export default function HeaderCc() {
 	//@12:43 of Rune videow-full absolute z-10
 	return (
 		<div className="flex-row bg-sky-800 hidden sm:block text-white">
-			<nav className="contaienr relative flex flex-wrap items-center justify-between mx-auto p-8">
+			<nav className="contaienr relative flex flex-wrap items-center justify-between mx-auto p-4">
 				<Link href="/" className="font-bond text-3xl">
 					Home
 				</Link>
