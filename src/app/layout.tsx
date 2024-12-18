@@ -47,7 +47,6 @@ export default function RootLayout({
 									<Header />
 									<div className="sm:px-9">
 										<SidebarTrigger />
-										<ModeToggle />
 									</div>
 									{children}
 								</div>

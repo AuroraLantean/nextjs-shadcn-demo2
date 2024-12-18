@@ -1,7 +1,7 @@
 # Demo2-NextJs15-React19-Shadcn
 
 ## Warning
-Unpin crypto wallet extensions in the Chrome Browser, or you may get this error:
+Unpin or uninstall Xverse crypto wallet extension in the Chrome Browser, or you may get this error:
 ```
 TypeError: Cannot redefine property: StacksProvider... chrome-extension://idnnbdplmphpflfnlkomgpfbpcgelopg/inpage.js (27:40749)
 ```
@@ -24,6 +24,7 @@ https://ui.shadcn.com/docs/installation/next
 yes for CSS variables
 ```
 pnpm dlx shadcn@latest init
+pnpm dlx shadcn@latest add button
 pnpm dlx shadcn@latest add sidebar-07
 pnpm add next-themes
 ```

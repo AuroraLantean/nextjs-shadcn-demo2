@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Button, buttonVariants } from "./ui/button";
+import { ModeToggle } from "./mode-toggle";
 
 export default function HeaderCc() {
 	const pathname = usePathname();
@@ -9,20 +11,53 @@ export default function HeaderCc() {
 			? "border-sky-600"
 			: "border-transparent hover:border-sky-600";
 
-	//@12:43 of Rune videow-full absolute z-10
+	//videow-full absolute z-10
+	//contaienr relative text-xl flex-wrap mx-auto
 	return (
-		<div className="flex-row bg-sky-800 hidden sm:block text-white">
-			<nav className="contaienr relative flex flex-wrap items-center justify-between mx-auto p-4">
-				<Link href="/" className="font-bond text-3xl">
-					Home
-				</Link>
+		<header className="flex-row items-center justify-between bg-sky-800 hidden sm:block text-white">
+			<div className="flex items-center justify-between gap-x-2  p-4">
+				<div className="flex items-center space-x-2 ">
+					<Link href="/" className="font-bond text-3xl">
+						<img
+							src="/Runes-Logo.png"
+							alt="Runes logo"
+							width="40"
+							height="40"
+						/>
+					</Link>
 
-				<div className="space-x-4 text-xl">
-					<Link href="/performance">Performance</Link>
-					<Link href="/reliability">Reliability</Link>
-					<Link href="/scale">Scale</Link>
+					<Link
+						href={"https://leather.io/learn/bitcoin-runes"}
+						target="_blank"
+						className={buttonVariants({ variant: "link" })}
+					>
+						What are Runes?
+					</Link>
+					<Link
+						href={"https://www.hiro.so/blog/introducing-the-runes-api"}
+						target="_blank"
+						className={buttonVariants({ variant: "link" })}
+					>
+						What is the Runes API?
+					</Link>
+					<Link
+						href={"https://github.com/hirosystems/runehook"}
+						target="_blank"
+						className={buttonVariants({ variant: "link" })}
+					>
+						Runehook
+					</Link>
 				</div>
-			</nav>
-		</div>
+				<div className="flex items-center gap-x-2">
+					<ModeToggle />
+					<Button>Connect</Button>
+				</div>
+			</div>
+		</header>
 	);
 }
+//<ConnectWallet buttonLabel="Connect"/>
+/*<Link href="/performance">Performance</Link>
+	<Link href="/reliability">Reliability</Link>
+	<Link href="/scale">Scale</Link>
+ */
