@@ -38,8 +38,10 @@ dbstatus:
 	systemctl status postgresql
 dbstart:
 	sudo systemctl start postgresql
+	systemctl status postgresql
 dbstop:
 	sudo systemctl stop postgresql
+	systemctl status postgresql
 dbrestart:
 	sudo systemctl restart postgresql
 dbmigrate:

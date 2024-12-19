@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button, buttonVariants } from "./ui/button";
 import { ModeToggle } from "./mode-toggle";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 /*const ConnectWallet = dynamic(() => import('@/components/connect-wallet'), {
   ssr: false
@@ -18,7 +19,7 @@ export default function HeaderCc() {
 	//videow-full absolute z-10
 	//contaienr relative text-xl flex-wrap mx-auto
 	return (
-		<header className="flex-row items-center justify-between bg-sky-800 hidden sm:block text-white">
+		<header className="flex-row items-center justify-between bg-sky-800 hidden sm:block">
 			<div className="flex items-center justify-between gap-x-2  p-4">
 				<div className="flex items-center space-x-2 ">
 					<Link href="/" className="font-bond text-3xl">
@@ -42,7 +43,7 @@ export default function HeaderCc() {
 						target="_blank"
 						className={buttonVariants({ variant: "link" })}
 					>
-						What is the Runes API?
+						Runes API?
 					</Link>
 					<Link
 						href={"https://github.com/hirosystems/runehook"}
@@ -53,8 +54,13 @@ export default function HeaderCc() {
 					</Link>
 				</div>
 				<div className="flex items-center gap-x-2">
+					<div className="md:hidden bg-white dark:bg-black h-[2.2rem] w-[2.2rem] rounded-lg pt-1 pl-1">
+						<SidebarTrigger />
+					</div>
 					<ModeToggle />
-					<Button>Connect</Button>
+					<Button className="text-black bg-white dark:text-white dark:bg-black">
+						Connect
+					</Button>
 				</div>
 			</div>
 		</header>

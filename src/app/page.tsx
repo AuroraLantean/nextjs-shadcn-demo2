@@ -1,6 +1,4 @@
-import * as actions from "@/actions";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 //import Hero from "@/components/hero";
 //import homeImg from "@public/home.jpg";
 

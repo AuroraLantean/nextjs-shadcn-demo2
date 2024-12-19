@@ -25,6 +25,8 @@ yes for CSS variables
 ```
 pnpm dlx shadcn@latest init
 pnpm dlx shadcn@latest add button
+pnpm dlx shadcn@latest add separator badge 
+pnpm dlx shadcn@latest add card
 pnpm dlx shadcn@latest add sidebar-07
 pnpm add next-themes
 ```

@@ -5,7 +5,6 @@ import Header from "@/components/header";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ModeToggle } from "@/components/mode-toggle";
 import Footer from "@/components/footer";
 
 const geistSans = localFont({
@@ -20,8 +19,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-	title: "Runes + Shadcn NextJs",
-	description: "Runes + Shadcn NextJs",
+	title: "Runes + Shadcn NextJs 15",
+	description: "Runes + Shadcn NextJs 15",
 };
 
 export default function RootLayout({
@@ -46,7 +45,7 @@ export default function RootLayout({
 							<section className="flex min-h-screen flex-1 flex-col w-full items-center overflow-hidden">
 								<div className="w-full container mx-auto">
 									<Header />
-									<div className="sm:px-9">
+									<div className="sm:px-9 sm:hidden">
 										<SidebarTrigger />
 									</div>
 									{children}

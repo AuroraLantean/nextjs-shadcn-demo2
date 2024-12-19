@@ -31,7 +31,7 @@ const data = {
 	user: {
 		name: "shadcn",
 		email: "m@example.com",
-		avatar: "/avatars/shadcn.jpg",
+		avatar: "/avatars/profile.svg",
 	},
 	teams: [
 		{
@@ -58,16 +58,16 @@ const data = {
 			isActive: true,
 			items: [
 				{
-					title: "Rune page1",
-					url: "#",
+					title: "Dashboard",
+					url: "/dashboard",
 				},
 				{
-					title: "Rune page2",
-					url: "#",
+					title: "Activity",
+					url: "/dashboard/activity",
 				},
 				{
-					title: "Rune page3",
-					url: "#",
+					title: "Balances",
+					url: "/dashboard/balances",
 				},
 			],
 		},
