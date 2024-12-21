@@ -17,8 +17,19 @@ import {
 import { ChevronsUpDown, SquareActivity } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import DashboardLineItem from "../dashboard-line-item";
+import type { ApiStatus, BlockActivity } from "@/types";
 
-export default function RecentBlockActivity() {
+type props = {
+	blockActivity: BlockActivity[];
+	totalActivityCount: number;
+	apiStatus: ApiStatus;
+};
+export default function RecentBlockActivity({
+	blockActivity,
+	apiStatus,
+	totalActivityCount,
+}: props) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
@@ -29,7 +40,8 @@ export default function RecentBlockActivity() {
 					Activity in Block
 				</CardTitle>
 				<CardDescription>
-					Total of {"x"} Runes activity in last confirmed block {"x"}
+					Total of {totalActivityCount} Runes activity in last confirmed block{" "}
+					{apiStatus?.block_height}
 				</CardDescription>
 			</CardHeader>
 			<CardContent>
@@ -49,16 +61,26 @@ export default function RecentBlockActivity() {
 							</Button>
 						</CollapsibleTrigger>
 					</div>
-					<div className="rounded-md border px-4 py-3 font-mono text-sm">
-						@radix-ui/primitives
-					</div>
+
+					<DashboardLineItem
+						a={blockActivity ? blockActivity[0].spaced_name : "."}
+						b={blockActivity ? blockActivity[0].operation : "."}
+						c={blockActivity ? blockActivity[0].tx_id : "."}
+						d={blockActivity ? blockActivity[0].amount : 0}
+					/>
 					<CollapsibleContent className="space-y-2">
-						<div className="rounded-md border px-4 py-3 font-mono text-sm">
-							@radix-ui/primitives
-						</div>
-						<div className="rounded-md border px-4 py-3 font-mono text-sm">
-							@radix-ui/primitives
-						</div>
+						<DashboardLineItem
+							a={blockActivity ? blockActivity[1].spaced_name : "."}
+							b={blockActivity ? blockActivity[1].operation : "."}
+							c={blockActivity ? blockActivity[1].tx_id : "."}
+							d={blockActivity ? blockActivity[1].amount : 0}
+						/>
+						<DashboardLineItem
+							a={blockActivity ? blockActivity[2].spaced_name : "."}
+							b={blockActivity ? blockActivity[2].operation : "."}
+							c={blockActivity ? blockActivity[2].tx_id : "."}
+							d={blockActivity ? blockActivity[2].amount : 0}
+						/>
 					</CollapsibleContent>
 				</Collapsible>
 			</CardContent>
@@ -66,7 +88,10 @@ export default function RecentBlockActivity() {
 				<Button
 					variant="secondary"
 					onClick={() =>
-						window.open(`https://ordiscan.com/block/${"x"}/runes`, "_blank")
+						window.open(
+							`https://ordiscan.com/block/${apiStatus?.block_height}/runes`,
+							"_blank",
+						)
 					}
 				>
 					View Block

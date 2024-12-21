@@ -17,8 +17,13 @@ import {
 import { ChevronsUpDown, WalletCards } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import DashboardLineItem from "../dashboard-line-item";
+import type { AddressBalances } from "@/types";
 
-export default function BalancesCard() {
+type props = {
+	addressBalances: AddressBalances[];
+};
+export default function BalancesCard({ addressBalances }: props) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
@@ -47,16 +52,57 @@ export default function BalancesCard() {
 							</Button>
 						</CollapsibleTrigger>
 					</div>
-					<div className="rounded-md border px-4 py-3 font-mono text-sm">
-						@radix-ui/primitives
-					</div>
+					<DashboardLineItem
+						a={
+							addressBalances[0] !== undefined
+								? addressBalances[0].spaced_name
+								: "."
+						}
+						b={addressBalances[0] !== undefined ? addressBalances[0].id : "."}
+						d={
+							addressBalances[0] !== undefined ? addressBalances[0].balance : 0
+						}
+						e={
+							addressBalances[0] !== undefined ? addressBalances[0].symbol : "."
+						}
+					/>
 					<CollapsibleContent className="space-y-2">
-						<div className="rounded-md border px-4 py-3 font-mono text-sm">
-							@radix-ui/primitives
-						</div>
-						<div className="rounded-md border px-4 py-3 font-mono text-sm">
-							@radix-ui/primitives
-						</div>
+						<DashboardLineItem
+							a={
+								addressBalances[1] !== undefined
+									? addressBalances[1].spaced_name
+									: "."
+							}
+							b={addressBalances[1] !== undefined ? addressBalances[1].id : "."}
+							d={
+								addressBalances[1] !== undefined
+									? addressBalances[1].balance
+									: 0
+							}
+							e={
+								addressBalances[1] !== undefined
+									? addressBalances[1].symbol
+									: "."
+							}
+						/>
+						<DashboardLineItem
+							a={
+								addressBalances[2] !== undefined
+									? addressBalances[2].spaced_name
+									: "."
+							}
+							b={addressBalances[2] !== undefined ? addressBalances[2].id : "."}
+							d={
+								addressBalances[2] !== undefined
+									? addressBalances[2].balance
+									: 0
+							}
+							e={
+								addressBalances[2] !== undefined
+									? addressBalances[2].symbol
+									: "."
+							}
+						/>
 					</CollapsibleContent>
 				</Collapsible>
 			</CardContent>
@@ -64,7 +110,10 @@ export default function BalancesCard() {
 				<Button
 					variant="secondary"
 					onClick={() =>
-						window.open(`https://ordinals.hiro.so/address/${"x"}`, "_blank")
+						window.open(
+							`https://ordinals.hiro.so/address/${addressBalances}`,
+							"_blank",
+						)
 					}
 				>
 					Ordinals?

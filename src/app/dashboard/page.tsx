@@ -52,11 +52,15 @@ export default async function Dashboard() {
 		<div className="flex flex-col sm:flex-row mt-12 sm:mt-0 sm:p-4 h-[968px] items-start justify-center gap-2">
 			<div className="flex flex-col flex-1 gap-2">
 				<Activity addressActivityForRune={addressActivityForRune} />
-				<FeaturedCard />
+				<FeaturedCard featuredRunes={featuredRunes} apiStatus={apiStatus} />
 			</div>
 			<div className="flex flex-col flex-1 gap-2">
-				<BalancesCard />
-				<RecentBlockActivity />
+				<BalancesCard addressBalances={addressBalances} />
+				<RecentBlockActivity
+					blockActivity={blockActivity}
+					apiStatus={apiStatus}
+					totalActivityCount={totalActivityCount}
+				/>
 			</div>
 		</div>
 	);
