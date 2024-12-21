@@ -1,8 +1,14 @@
 import {
+	type AddressActivityForRune,
+	addressActivityForRuneToClient,
 	type AddressBalances,
 	addressBalancesToClient,
+	type ApiStatus,
+	type BlockActivity,
+	blockActivityToClient,
 	type Etching,
 } from "@/types";
+import { mostFrequent } from "./helpers";
 
 // Get address balances /runes/v1/addresses/{address}/balances
 // https://docs.hiro.so/bitcoin/runes/api/balances/address
@@ -49,18 +55,85 @@ export async function getAddressBalances(address: string) {
 }
 
 // Get Runes activity for an address /runes/v1/etchings/{etching}/activity/{address}
+// https://docs.hiro.so/bitcoin/runes/api/activities/for-address
 export async function getYourRunesActivity(data: AddressBalances[]) {
-	return null;
+	if (data.length === 0) {
+		return [];
+	}
+
+	const responses = data.map(async (eachRune) => {
+		const id = eachRune.id;
+		const address = eachRune.address;
+		const symbol = eachRune.symbol;
+		const name = eachRune.name;
+		const spaced_name = eachRune.spaced_name;
+
+		const response = await fetch(
+			`https://api.hiro.so/runes/v1/etchings/${id}/activity/${address}?offset=0&limit=60`,
+			{
+				method: "GET",
+				cache: "no-store",
+			},
+		);
+		const data = await response.json();
+
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		const results: AddressActivityForRune[] = data.results.map((data: any) => {
+			const result = addressActivityForRuneToClient(
+				data,
+				id,
+				symbol,
+				name,
+				spaced_name,
+			);
+			return result;
+		});
+
+		return results;
+	});
+
+	const arrayOfArrays = await Promise.all(responses);
+	const flattenedArray = arrayOfArrays.flat(1);
+	flattenedArray.sort(
+		(a: AddressActivityForRune, b: AddressActivityForRune) =>
+			b.timestamp - a.timestamp,
+	); //most recent activity is sorted first
+
+	return flattenedArray;
 }
 
 // Get activity for a block /runes/v1/blocks/{block}/activity
+// https://docs.hiro.so/bitcoin/runes/api/activities/for-block
 export async function getBlockActivity(block_height: string) {
-	return null;
+	const response = await fetch(
+		`https://api.hiro.so/runes/v1/blocks/${block_height}/activity?offset=0&limit=60`,
+		{
+			method: "GET",
+			cache: "no-store",
+		},
+	);
+	const data = await response.json();
+	const totalRunesActivity: number = data.total;
+
+	const results: BlockActivity[] = data.results.map(blockActivityToClient);
+
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	const mostFrequentRunes = mostFrequent(results, (p: { id: any }) => p.id);
+
+	return { results, totalRunesActivity, mostFrequentRunes };
 }
 
 // Get API Status /runes/v1
+// https://docs.hiro.so/bitcoin/runes/api/info/status
 export async function getApiStatus() {
-	return null;
+	const response = await fetch("https://api.hiro.so/runes/v1/", {
+		method: "GET",
+		cache: "no-store",
+	});
+	const data = await response.json();
+	const api_status: ApiStatus = data;
+
+	return api_status;
 }
 
 // Get etching /runes/v1/etchings/{etching}

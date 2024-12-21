@@ -17,8 +17,13 @@ import {
 import { ChevronsUpDown, FolderKanban } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import type { AddressActivityForRune } from "@/types";
+import DashboardLineItem from "../dashboard-line-item";
 
-export default function Activity() {
+type props = {
+	addressActivityForRune: AddressActivityForRune[];
+};
+export default function Activity({ addressActivityForRune }: props) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
@@ -49,16 +54,89 @@ export default function Activity() {
 							</Button>
 						</CollapsibleTrigger>
 					</div>
-					<div className="rounded-md border px-4 py-3 font-mono text-sm">
-						@radix-ui/primitives
-					</div>
+
+					<DashboardLineItem
+						a={
+							addressActivityForRune[0] !== undefined
+								? addressActivityForRune[0].spaced_name
+								: "."
+						}
+						b={
+							addressActivityForRune[0] !== undefined
+								? addressActivityForRune[0].operation
+								: "."
+						}
+						c={
+							addressActivityForRune[0] !== undefined
+								? addressActivityForRune[0].block_height
+								: "."
+						}
+						d={
+							addressActivityForRune[0] !== undefined
+								? addressActivityForRune[0].amount
+								: 0
+						}
+						e={
+							addressActivityForRune[0] !== undefined
+								? addressActivityForRune[0].symbol
+								: ""
+						}
+					/>
 					<CollapsibleContent className="space-y-2">
-						<div className="rounded-md border px-4 py-3 font-mono text-sm">
-							@radix-ui/colors
-						</div>
-						<div className="rounded-md border px-4 py-3 font-mono text-sm">
-							@stitches/react
-						</div>
+						<DashboardLineItem
+							a={
+								addressActivityForRune[1] !== undefined
+									? addressActivityForRune[1].spaced_name
+									: "."
+							}
+							b={
+								addressActivityForRune[1] !== undefined
+									? addressActivityForRune[1].operation
+									: "."
+							}
+							c={
+								addressActivityForRune[1] !== undefined
+									? addressActivityForRune[1].block_height
+									: "."
+							}
+							d={
+								addressActivityForRune[1] !== undefined
+									? addressActivityForRune[1].amount
+									: 0
+							}
+							e={
+								addressActivityForRune[1] !== undefined
+									? addressActivityForRune[1].symbol
+									: ""
+							}
+						/>
+						<DashboardLineItem
+							a={
+								addressActivityForRune[2] !== undefined
+									? addressActivityForRune[2].spaced_name
+									: "."
+							}
+							b={
+								addressActivityForRune[2] !== undefined
+									? addressActivityForRune[2].operation
+									: "."
+							}
+							c={
+								addressActivityForRune[2] !== undefined
+									? addressActivityForRune[2].block_height
+									: "."
+							}
+							d={
+								addressActivityForRune[2] !== undefined
+									? addressActivityForRune[2].amount
+									: 0
+							}
+							e={
+								addressActivityForRune[2] !== undefined
+									? addressActivityForRune[2].symbol
+									: ""
+							}
+						/>
 					</CollapsibleContent>
 				</Collapsible>
 			</CardContent>

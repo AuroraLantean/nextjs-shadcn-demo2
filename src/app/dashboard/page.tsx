@@ -13,8 +13,8 @@ import { ll } from "@/lib/utils";
 
 async function retrieveAllData(userAddress: string) {
 	const addressBalances = await getAddressBalances(userAddress);
-	return { response: addressBalances };
-	/*
+	//return { response: addressBalances };
+
 	const addressActivityForRune = await getYourRunesActivity(addressBalances);
 
 	const apiStatus = await getApiStatus();
@@ -32,29 +32,26 @@ async function retrieveAllData(userAddress: string) {
 		totalActivityCount: totalRunesActivity,
 		featuredRunes,
 	};
-	*/
 }
 
 export default async function Dashboard() {
-	const addr1 =
+	const userAddress =
 		"bc1p768t5v00693p6mtdrqhelqxhuecme27wqme4w5n5fnmhy8vg7pcsgrtnwy"; //found from https://www.oklink.com/btc/token/runes/1-0
-	//const addr1 =	("bc1pwsssl9jrvazgew6rdw8lxu3ghk4tmmmhnffht86mlkev42k4r0cs9jqk0g");
-	const { response } = await retrieveAllData(addr1);
-	ll("out:", response.length);
-
-	/*	const {
+	//const userAddress =	("bc1pwsssl9jrvazgew6rdw8lxu3ghk4tmmmhnffht86mlkev42k4r0cs9jqk0g");
+	const {
 		addressBalances,
 		addressActivityForRune,
 		apiStatus,
 		blockActivity,
 		totalActivityCount,
 		featuredRunes,
-	} = await retrieveAllData(searchParams.userAddress);*/
+	} = await retrieveAllData(userAddress);
+	//ll("out:", response.length);
 
 	return (
 		<div className="flex flex-col sm:flex-row mt-12 sm:mt-0 sm:p-4 h-[968px] items-start justify-center gap-2">
 			<div className="flex flex-col flex-1 gap-2">
-				<Activity />
+				<Activity addressActivityForRune={addressActivityForRune} />
 				<FeaturedCard />
 			</div>
 			<div className="flex flex-col flex-1 gap-2">
