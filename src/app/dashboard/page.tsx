@@ -34,10 +34,13 @@ async function retrieveAllData(userAddress: string) {
 	};
 }
 
-export default async function Dashboard() {
-	const userAddress =
-		"bc1p768t5v00693p6mtdrqhelqxhuecme27wqme4w5n5fnmhy8vg7pcsgrtnwy"; //found from https://www.oklink.com/btc/token/runes/1-0
-	//const userAddress =	("bc1pwsssl9jrvazgew6rdw8lxu3ghk4tmmmhnffht86mlkev42k4r0cs9jqk0g");
+export default async function Dashboard({
+	params,
+}: { params: Promise<{ userAddress: string }> }) {
+	const userAddress = (await params).userAddress;
+	//process.env.NEXT_PUBLIC_BITCOIN_RUNES_ADDR1 || "";
+	//found from https://www.oklink.com/btc/token/runes/1-0
+	console.log("Dashboard userAddress:", userAddress);
 	const {
 		addressBalances,
 		addressActivityForRune,

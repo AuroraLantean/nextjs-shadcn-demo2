@@ -4,6 +4,9 @@ import { usePathname } from "next/navigation";
 import { Button, buttonVariants } from "./ui/button";
 import { ModeToggle } from "./mode-toggle";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+//import StacksConnect from "./stacks-connect";
+//import StacksConnect2 from "./stacks-connect2";
+import StacksConnectTemplate from "./stacks-connect-template";
 
 /*const ConnectWallet = dynamic(() => import('@/components/connect-wallet'), {
   ssr: false
@@ -58,16 +61,17 @@ export default function HeaderCc() {
 						<SidebarTrigger />
 					</div>
 					<ModeToggle />
-					<Button className="text-black bg-white dark:text-white dark:bg-black">
-						Connect
-					</Button>
+					<StacksConnectTemplate />
 				</div>
 			</div>
 		</header>
 	);
 }
-//<ConnectWallet buttonLabel="Connect"/>
-/*<Link href="/performance">Performance</Link>
+/*
+					<StacksConnect buttonLabel="Connect" />
+
+<Button className="text-black bg-white dark:text-white dark:bg-black">Connect</Button>
+  <Link href="/performance">Performance</Link>
 	<Link href="/reliability">Reliability</Link>
 	<Link href="/scale">Scale</Link>
  */

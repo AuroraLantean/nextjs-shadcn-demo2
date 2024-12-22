@@ -50,6 +50,15 @@ https://github.com/suren-atoyan/monaco-react
 pnpm add @monaco-editor/react
 pnpm add @monaco-editor/react --legacy-peer-deps
 
+## Add Hiro Runes API
+https://docs.hiro.so/bitcoin/runes/api
+
+## Add Stacks Connect Authenticate
+https://docs.hiro.so/stacks/connect/guides/authenticate-users
+
+Stacks.js Starters
+https://github.com/hirosystems/stacks.js-starters
+
 Run in development mode:
 
 ```bash

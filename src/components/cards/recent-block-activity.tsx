@@ -15,7 +15,7 @@ import {
 	CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { ChevronsUpDown, SquareActivity } from "lucide-react";
-import Link from "next/link";
+
 import { useState } from "react";
 import DashboardLineItem from "../dashboard-line-item";
 import type { ApiStatus, BlockActivity } from "@/types";
