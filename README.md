@@ -1,5 +1,13 @@
 # Demo2-NextJs15-React19-Shadcn
 
+TODO: Next.js Top 7 Security Best Practices (Checklist)
+https://www.youtube.com/watch?v=yDjXW-0Gi6k
+TODO: https://gist.github.com/ECBSJ/0cd822062a998ada1393a830a48c1043
+https://www.youtube.com/watch?v=5sh6Gt3ojuw&t=365s
+TODO: etching mint bitcoin runes javascript
+https://docs.hiro.so/stacks/connect/guides/authenticate-users
+https://github.com/hirosystems/connect?tab=readme-ov-file
+
 ## Warning
 Unpin or uninstall Xverse crypto wallet extension in the Chrome Browser, or you may get this error:
 ```
@@ -18,6 +26,12 @@ pnpm biome init
 ```
 
 To format and lint: `bun fmtlint`
+
+Add ReactCompiler:
+https://nextjs.org/docs/app/api-reference/config/next-config-js/reactCompiler
+```
+pnpm install babel-plugin-react-compiler
+```
 
 Add Shadcn UI: 
 https://ui.shadcn.com/docs/installation/next
@@ -62,13 +76,13 @@ https://github.com/hirosystems/stacks.js-starters
 Run in development mode:
 
 ```bash
-bun run dev
+bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 Run in production mode:
 ```bash
-bun run build
-bun run start
+bun build
+bun start
 ```

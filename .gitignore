@@ -2,6 +2,7 @@
 aarchives
 Downloads
 zz*
+justfile
 
 # dependencies
 /node_modules
