@@ -41,9 +41,11 @@ pnpm dlx shadcn@latest init
 pnpm dlx shadcn@latest add button
 pnpm dlx shadcn@latest add separator badge 
 pnpm dlx shadcn@latest add card
-pnpm dlx shadcn@latest add sidebar-07
+pnpm dlx shadcn@latest add sidebar
 pnpm add next-themes
 ```
+Add relevant CSS code into global.css(into the @layer base section)
+
 
 Add Prisma
 https://www.prisma.io/docs/getting-started/quickstart-sqlite
