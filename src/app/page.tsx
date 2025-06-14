@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-//import Hero from "@/components/hero";
+import { Button } from "@ui/button";
+//import Hero from "@components/hero";
 //import homeImg from "@public/home.jpg";
 
 export default async function HomePage() {

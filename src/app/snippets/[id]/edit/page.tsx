@@ -1,5 +1,5 @@
 import * as actions from "@/actions";
-import SnippetEditForm from "@/components/snippet-edit-form";
+import SnippetEditForm from "@components/snippet-edit-form";
 import { notFound } from "next/navigation";
 
 type SnippetEditPageProps = {

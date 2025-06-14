@@ -7,10 +7,10 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card";
-import { Button, buttonVariants } from "@/components/ui/button";
-//import { Separator } from "@/components/ui/separator";
-//import { Badge } from "@/components/ui/badge";
+} from "@ui/card";
+import { Button, buttonVariants } from "@ui/button";
+//import { Separator } from "@ui/separator";
+//import { Badge } from "@ui/badge";
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
 import type { ApiStatus, Etching } from "@/types";

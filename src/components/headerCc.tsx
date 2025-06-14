@@ -3,12 +3,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button, buttonVariants } from "./ui/button";
 import { ModeToggle } from "./mode-toggle";
-import { SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarTrigger } from "@ui/sidebar";
 //import StacksConnect from "./stacks-connect";
 //import StacksConnect2 from "./stacks-connect2";
 import StacksConnectTemplate from "./stacks-connect-template";
 
-/*const ConnectWallet = dynamic(() => import('@/components/connect-wallet'), {
+/*const ConnectWallet = dynamic(() => import('@components/connect-wallet'), {
   ssr: false
 });
 */

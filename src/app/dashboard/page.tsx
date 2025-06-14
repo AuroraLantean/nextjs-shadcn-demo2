@@ -1,7 +1,7 @@
-import Activity from "@/components/cards/activity";
-import BalancesCard from "@/components/cards/balances";
-import FeaturedCard from "@/components/cards/featured";
-import RecentBlockActivity from "@/components/cards/recent-block-activity";
+import Activity from "@cards/activity";
+import BalancesCard from "@cards/balances";
+import FeaturedCard from "@cards/featured";
+import RecentBlockActivity from "@cards/recent-block-activity";
 import {
 	getAddressBalances,
 	getApiStatus,

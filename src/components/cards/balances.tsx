@@ -7,13 +7,13 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "@/components/ui/card";
-import { Button, buttonVariants } from "@/components/ui/button";
+} from "@ui/card";
+import { Button, buttonVariants } from "@ui/button";
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+} from "@ui/collapsible";
 import { ChevronsUpDown, WalletCards } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";

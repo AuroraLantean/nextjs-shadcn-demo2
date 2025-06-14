@@ -1,4 +1,4 @@
-import Hero from "@/components/hero";
+import Hero from "@components/hero";
 import reliabilityImg from "@public/reliability.jpg";
 
 export default function ReliabilityPage() {

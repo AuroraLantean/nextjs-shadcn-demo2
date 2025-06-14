@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "@/components/header";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
-import { ThemeProvider } from "@/components/theme-provider";
-import Footer from "@/components/footer";
+import Header from "@components/header";
+import { SidebarProvider, SidebarTrigger } from "@ui/sidebar";
+import { AppSidebar } from "@components/app-sidebar";
+import { ThemeProvider } from "@components/theme-provider";
+import Footer from "@components/footer";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -19,8 +19,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-	title: "Runes + Shadcn NextJs 15",
-	description: "Runes + Shadcn NextJs 15",
+	title: "Shadcn NextJs 15 + React 19",
+	description: "Shadcn NextJs 15 + React 19",
 };
 
 export default function RootLayout({

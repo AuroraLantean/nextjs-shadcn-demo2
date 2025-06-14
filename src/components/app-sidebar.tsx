@@ -8,23 +8,23 @@ import {
 	Command,
 	Frame,
 	GalleryVerticalEnd,
-	Map,
+	MapPin,
 	PieChart,
 	Settings2,
 	SquareTerminal,
 } from "lucide-react";
 
-import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
-import { NavUser } from "@/components/nav-user";
-import { TeamSwitcher } from "@/components/team-switcher";
+import { NavMain } from "@components/nav-main";
+import { NavProjects } from "@components/nav-projects";
+import { NavUser } from "@components/nav-user";
+import { TeamSwitcher } from "@components/team-switcher";
 import {
 	Sidebar,
 	SidebarContent,
 	SidebarFooter,
 	SidebarHeader,
 	SidebarRail,
-} from "@/components/ui/sidebar";
+} from "@ui/sidebar";
 
 // This is sample data.
 const data = {
@@ -151,7 +151,7 @@ const data = {
 		{
 			name: "Travel",
 			url: "#",
-			icon: Map,
+			icon: MapPin,
 		},
 	],
 };

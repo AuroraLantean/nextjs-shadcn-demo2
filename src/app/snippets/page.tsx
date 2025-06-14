@@ -1,6 +1,6 @@
 import * as actions from "@/actions";
 import Link from "next/link";
-//import Hero from "@/components/hero";
+//import Hero from "@components/hero";
 //import homeImg from "@public/home.jpg";
 
 export default async function ShowSnippetsPage() {
