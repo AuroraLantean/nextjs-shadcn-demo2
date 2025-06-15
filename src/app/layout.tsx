@@ -6,6 +6,7 @@ import { SidebarProvider, SidebarTrigger } from "@ui/sidebar";
 import { AppSidebar } from "@components/app-sidebar";
 import { ThemeProvider } from "@components/theme-provider";
 import Footer from "@components/footer";
+import MobileMenu from "@/components/mobile-menu";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -29,6 +30,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
+		//suppressHydrationWarning to skip errors caused by browser extensions
 		<html lang="en" suppressHydrationWarning className="dark">
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -41,13 +43,14 @@ export default function RootLayout({
 				>
 					<SidebarProvider>
 						<AppSidebar />
+						<div className="block sm:hidden h-8">
+							<MobileMenu />
+						</div>
 						<main className="flex flex-row w-full">
 							<section className="flex min-h-screen flex-1 flex-col w-full items-center overflow-hidden">
-								<div className="w-full container mx-auto">
+								<div className="w-full">
 									<Header />
-									<div className="sm:px-9 sm:hidden">
-										<SidebarTrigger />
-									</div>
+
 									{children}
 									<Footer />
 								</div>
@@ -59,4 +62,4 @@ export default function RootLayout({
 		</html>
 	);
 }
-//max-md:pb-32 sm:px-10
+//max-md:pb-32 sm:px-10  mx-auto

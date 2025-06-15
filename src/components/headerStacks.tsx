@@ -12,7 +12,7 @@ import StacksConnectTemplate from "./stacks-connect-template";
   ssr: false
 });
 */
-export default function HeaderCc() {
+export default function HeaderStacks() {
 	const pathname = usePathname();
 	const active = (path: string) =>
 		path === pathname
