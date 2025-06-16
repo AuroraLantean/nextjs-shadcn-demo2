@@ -52,22 +52,45 @@ const data = {
 	],
 	navMain: [
 		{
-			title: "Bitcoin Runes",
+			title: "Sui Proposals",
 			url: "#",
-			icon: SquareTerminal,
+			icon: BookOpen,
 			isActive: true,
 			items: [
 				{
+					title: "List All",
+					url: "/sui",
+				},
+				{
+					title: "Add New",
+					url: "/sui/new",
+				},
+				{
+					title: "Vote",
+					url: "/sui/vote",
+				},
+				{
+					title: "List Prop1",
+					url: "/sui/1",
+				},
+			],
+		},
+		{
+			title: "Bitcoin Runes",
+			url: "#",
+			icon: SquareTerminal,
+			items: [
+				{
 					title: "Dashboard",
-					url: "/dashboard",
+					url: "/runes",
 				},
 				{
 					title: "Activity",
-					url: "/dashboard/activity",
+					url: "/runes/activity",
 				},
 				{
 					title: "Balances",
-					url: "/dashboard/balances",
+					url: "/runes/balances",
 				},
 			],
 		},
@@ -78,38 +101,15 @@ const data = {
 			items: [
 				{
 					title: "Snippets",
-					url: "/snippets",
+					url: "/nextjs/snippets",
 				},
 				{
 					title: "new snippet",
-					url: "/snippets/new",
+					url: "/nextjs/snippets/new",
 				},
 				{
-					title: "Page3",
-					url: "#",
-				},
-			],
-		},
-		{
-			title: "Documentation",
-			url: "#",
-			icon: BookOpen,
-			items: [
-				{
-					title: "Introduction",
-					url: "#",
-				},
-				{
-					title: "Get Started",
-					url: "#",
-				},
-				{
-					title: "Tutorials",
-					url: "#",
-				},
-				{
-					title: "Changelog",
-					url: "#",
+					title: "Snippet1",
+					url: "/nextjs/snippets/1",
 				},
 			],
 		},

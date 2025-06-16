@@ -46,8 +46,15 @@ pnpm add next-themes
 ```
 Add relevant CSS code into global.css(into the @layer base section)
 
+## VSCode Plugin - Console Ninja
+Console Ninja VSCode Extension 
+https://www.youtube.com/watch?v=OC-_fcJyz_c
 
-Add Prisma
+
+## Database ORM
+### Add Drizzle
+
+### Add Prisma
 https://www.prisma.io/docs/getting-started/quickstart-sqlite
 ```
 pnpm add prisma

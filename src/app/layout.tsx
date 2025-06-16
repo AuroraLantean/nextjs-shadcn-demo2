@@ -7,6 +7,8 @@ import { AppSidebar } from "@components/app-sidebar";
 import { ThemeProvider } from "@components/theme-provider";
 import Footer from "@components/footer";
 import MobileMenu from "@/components/mobile-menu";
+import { after } from "next/server";
+import { ll } from "@/lib/utils";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -29,6 +31,9 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	after(() => {
+		ll("RootLayout at after()");
+	});
 	return (
 		//suppressHydrationWarning to skip errors caused by browser extensions
 		<html lang="en" suppressHydrationWarning className="dark">
