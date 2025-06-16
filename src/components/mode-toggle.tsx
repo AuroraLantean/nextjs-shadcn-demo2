@@ -12,6 +12,7 @@ import {
 	DropdownMenuTrigger,
 } from "@ui/dropdown-menu";
 
+//can increase DropdownMenuContent with like className="w-40", but cannot reduce it below 36
 export function ModeToggle() {
 	const { setTheme } = useTheme();
 

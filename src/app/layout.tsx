@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "@components/header";
 import { SidebarProvider, SidebarTrigger } from "@ui/sidebar";
 import { AppSidebar } from "@components/app-sidebar";
 import { ThemeProvider } from "@components/theme-provider";
 import Footer from "@components/footer";
-import MobileMenu from "@/components/mobile-menu";
+import MobileMenu from "@components/mobile-menu";
 import { after } from "next/server";
-import { ll } from "@/lib/utils";
+import { ll } from "@lib/utils";
+import Header1 from "@components/header1";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -54,7 +54,7 @@ export default function RootLayout({
 						<main className="flex flex-row w-full">
 							<section className="flex min-h-screen flex-1 flex-col w-full items-center overflow-hidden">
 								<div className="w-full">
-									<Header />
+									<Header1 />
 
 									{children}
 									<Footer />

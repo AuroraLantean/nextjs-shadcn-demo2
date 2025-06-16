@@ -6,7 +6,11 @@ import { ModeToggle } from "./mode-toggle";
 import { SidebarTrigger } from "@ui/sidebar";
 import MobileMenu from "./mobile-menu";
 
-/*const ConnectWallet = dynamic(() => import('@components/connect-wallet'), {
+/*outer container causes Header to indent!
+import HeaderStacks from "./headerStacks";
+return <HeaderStacks />;
+
+const ConnectWallet = dynamic(() => import('@components/connect-wallet'), {
   ssr: false
 });
 */

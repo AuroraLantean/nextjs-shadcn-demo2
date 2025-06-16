@@ -4,6 +4,7 @@ import type * as React from "react";
 import {
 	AudioWaveform,
 	BookOpen,
+	Wallet,
 	Bot,
 	Command,
 	Frame,
@@ -22,30 +23,42 @@ import {
 	Sidebar,
 	SidebarContent,
 	SidebarFooter,
+	SidebarGroup,
+	SidebarGroupContent,
+	SidebarGroupLabel,
 	SidebarHeader,
+	SidebarMenu,
+	SidebarMenuButton,
+	SidebarMenuItem,
 	SidebarRail,
 } from "@ui/sidebar";
 
-// This is sample data.
+const quickPages = [
+	{
+		title: "Wallet",
+		url: "/wallet",
+		icon: Wallet,
+	},
+];
 const data = {
 	user: {
-		name: "shadcn",
-		email: "m@example.com",
+		name: "John",
+		email: "john.doe@x.com",
 		avatar: "/avatars/profile.svg",
 	},
 	teams: [
 		{
-			name: "Acme Inc",
+			name: "Google Inc",
 			logo: GalleryVerticalEnd,
 			plan: "Enterprise",
 		},
 		{
-			name: "Acme Corp.",
+			name: "Amazon Corp.",
 			logo: AudioWaveform,
 			plan: "Startup",
 		},
 		{
-			name: "Evil Corp.",
+			name: "Bitcoin Corp.",
 			logo: Command,
 			plan: "Free",
 		},
@@ -163,6 +176,23 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				<TeamSwitcher teams={data.teams} />
 			</SidebarHeader>
 			<SidebarContent>
+				<SidebarGroup>
+					<SidebarGroupLabel>Quick Pages</SidebarGroupLabel>
+					<SidebarGroupContent>
+						<SidebarMenu>
+							{quickPages.map((item) => (
+								<SidebarMenuItem key={item.title}>
+									<SidebarMenuButton asChild>
+										<a href={item.url}>
+											<item.icon />
+											<span>{item.title}</span>
+										</a>
+									</SidebarMenuButton>
+								</SidebarMenuItem>
+							))}
+						</SidebarMenu>
+					</SidebarGroupContent>
+				</SidebarGroup>
 				<NavMain items={data.navMain} />
 				<NavProjects projects={data.projects} />
 			</SidebarContent>

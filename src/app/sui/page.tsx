@@ -1,5 +1,4 @@
-import React from "react";
-import ProposalView from "./views/ProposalView";
+import ProposalView from "@components/proposal-view";
 
 const suiDashboard = () => {
 	return (
