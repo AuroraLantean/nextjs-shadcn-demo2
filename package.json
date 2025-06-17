@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",
+    "@mysten/dapp-kit": "^0.16.12",
+    "@mysten/sui": "^1.33.0",
     "@prisma/client": "6.9.0",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-collapsible": "^1.1.11",

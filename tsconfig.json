@@ -26,6 +26,7 @@
 			"@providers/*": ["./src/components/providers/*"],
 			"@cards/*": ["./src/components/cards/*"],
 			"@hooks/*": ["./src/hooks/*"],
+			"@config/*": ["./src/config/*"],
 			"@lib/*": ["./src/lib/*"]
 		}
 	},

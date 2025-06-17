@@ -10,6 +10,7 @@ import MobileMenu from "@components/mobile-menu";
 import { after } from "next/server";
 import { ll } from "@lib/utils";
 import Header1 from "@components/header1";
+import SuiClientWalletProvider from "@/components/providers/sui-clientwallet-provider";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -43,29 +44,31 @@ export default function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
 				<TanstackProvider>
-					<NextThemeProvider
-						attribute="class"
-						defaultTheme="system"
-						enableSystem
-						disableTransitionOnChange
-					>
-						<SidebarProvider>
-							<AppSidebar />
-							<div className="block sm:hidden h-8">
-								<MobileMenu />
-							</div>
-							<main className="flex flex-row w-full">
-								<section className="flex min-h-screen flex-1 flex-col w-full items-center overflow-hidden">
-									<div className="w-full">
-										<Header1 />
+					<SuiClientWalletProvider>
+						<NextThemeProvider
+							attribute="class"
+							defaultTheme="system"
+							enableSystem
+							disableTransitionOnChange
+						>
+							<SidebarProvider>
+								<AppSidebar />
+								<div className="block sm:hidden h-8">
+									<MobileMenu />
+								</div>
+								<main className="flex flex-row w-full">
+									<section className="flex min-h-screen flex-1 flex-col w-full items-center overflow-hidden">
+										<div className="w-full">
+											<Header1 />
 
-										{children}
-										<Footer />
-									</div>
-								</section>
-							</main>
-						</SidebarProvider>
-					</NextThemeProvider>
+											{children}
+											<Footer />
+										</div>
+									</section>
+								</main>
+							</SidebarProvider>
+						</NextThemeProvider>
+					</SuiClientWalletProvider>
 				</TanstackProvider>
 			</body>
 		</html>
