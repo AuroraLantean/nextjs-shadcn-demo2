@@ -50,6 +50,8 @@ Add relevant CSS code into global.css(into the @layer base section)
 Console Ninja VSCode Extension 
 https://www.youtube.com/watch?v=OC-_fcJyz_c
 
+## State Management - Jotai, Atomic State Style
+Why: Jotai is infinitely simpler than Redux, less restricting & less rerendering than React Context, less boilerplates than Zustand, as easy as using React useState hook! No big config file.
 
 ## Database ORM
 ### Add Drizzle
