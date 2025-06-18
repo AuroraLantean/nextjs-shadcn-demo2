@@ -11,6 +11,7 @@ import { after } from "next/server";
 import { ll } from "@lib/utils";
 import Header1 from "@header_sidebar/header1";
 import SuiClientWalletProvider from "@/components/providers/sui-clientwallet-provider";
+import "@mysten/dapp-kit/dist/index.css";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -39,6 +40,7 @@ export default function RootLayout({
 
 	return (
 		//suppressHydrationWarning to skip errors caused by browser extensions
+		//TODO: Avatar image alignment
 		<html lang="en" suppressHydrationWarning className="dark">
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -52,15 +54,14 @@ export default function RootLayout({
 							disableTransitionOnChange
 						>
 							<SidebarProvider>
-								<AppSidebar />
 								<div className="block sm:hidden h-8">
 									<MobileMenu />
 								</div>
-								<main className="flex flex-row w-full">
+								<AppSidebar />
+								<main className="flex flex-row w-full overflow-hidden">
 									<section className="flex min-h-screen flex-1 flex-col w-full items-center overflow-hidden">
 										<div className="w-full">
 											<Header1 />
-
 											{children}
 											<Footer />
 										</div>

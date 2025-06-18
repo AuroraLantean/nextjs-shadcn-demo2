@@ -5,6 +5,7 @@ import { buttonVariants } from "@ui/button";
 import { ModeToggle } from "./mode-toggle";
 import { SidebarTrigger } from "@ui/sidebar";
 import MobileMenu from "./mobile-menu";
+import { ConnectButton } from "@mysten/dapp-kit";
 
 /*outer container causes Header to indent!
 import HeaderStacks from "./headerStacks";
@@ -58,7 +59,7 @@ export default function Header1() {
 						<MobileMenu />
 					</div>
 					<ModeToggle />
-					<div>Connect Wallet</div>
+					<ConnectButton />
 				</div>
 			</div>
 		</header>

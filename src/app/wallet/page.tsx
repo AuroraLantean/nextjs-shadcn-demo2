@@ -1,4 +1,5 @@
 "use client";
+import { WalletStatus } from "@wallet/status";
 import React from "react";
 
 const WalletPage = () => {
@@ -21,6 +22,7 @@ const WalletPage = () => {
 		<>
 			<div className="mb-8">
 				<h1 className="text-4xl font-bold">Your Wallet Info</h1>
+				<WalletStatus />
 			</div>
 		</>
 	);
