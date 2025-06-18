@@ -15,10 +15,10 @@ import {
 	SquareTerminal,
 } from "lucide-react";
 
-import { NavMain } from "@components/nav-main";
-import { NavProjects } from "@components/nav-projects";
-import { NavUser } from "@components/nav-user";
-import { TeamSwitcher } from "@components/team-switcher";
+import { SubSidebarMain } from "@header_sidebar/subsidebar-main";
+import { SubSidebarProjects } from "@header_sidebar/subsidebar-projects";
+import { SubsidebarUser } from "@header_sidebar/subsidebar-user";
+import { TeamSwitcher } from "@header_sidebar/team-switcher";
 import {
 	Sidebar,
 	SidebarContent,
@@ -63,7 +63,7 @@ const data = {
 			plan: "Free",
 		},
 	],
-	navMain: [
+	subsidebar: [
 		{
 			title: "Sui Proposals",
 			url: "#",
@@ -193,11 +193,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 						</SidebarMenu>
 					</SidebarGroupContent>
 				</SidebarGroup>
-				<NavMain items={data.navMain} />
-				<NavProjects projects={data.projects} />
+				<SubSidebarMain items={data.subsidebar} />
+				<SubSidebarProjects projects={data.projects} />
 			</SidebarContent>
 			<SidebarFooter>
-				<NavUser user={data.user} />
+				<SubsidebarUser user={data.user} />
 			</SidebarFooter>
 			<SidebarRail />
 		</Sidebar>

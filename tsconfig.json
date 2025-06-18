@@ -24,6 +24,7 @@
 			"@components/*": ["./src/components/*"],
 			"@ui/*": ["./src/components/ui/*"],
 			"@providers/*": ["./src/components/providers/*"],
+			"@header_sidebar/*": ["./src/components/header_sidebar/*"],
 			"@cards/*": ["./src/components/cards/*"],
 			"@hooks/*": ["./src/hooks/*"],
 			"@config/*": ["./src/config/*"],

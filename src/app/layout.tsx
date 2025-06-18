@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@ui/sidebar";
-import { AppSidebar } from "@components/app-sidebar";
+import { AppSidebar } from "@header_sidebar/app-sidebar";
 import NextThemeProvider from "@/components/providers/next-theme-provider";
 import TanstackProvider from "@providers/tanstack-provider";
-import Footer from "@components/footer";
-import MobileMenu from "@components/mobile-menu";
+import Footer from "@header_sidebar/footer";
+import MobileMenu from "@header_sidebar/mobile-menu";
 import { after } from "next/server";
 import { ll } from "@lib/utils";
-import Header1 from "@components/header1";
+import Header1 from "@header_sidebar/header1";
 import SuiClientWalletProvider from "@/components/providers/sui-clientwallet-provider";
 
 const geistSans = localFont({

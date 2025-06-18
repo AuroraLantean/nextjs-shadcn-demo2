@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { buttonVariants } from "./ui/button";
+import { buttonVariants } from "@ui/button";
 import { ModeToggle } from "./mode-toggle";
 import { SidebarTrigger } from "@ui/sidebar";
 import MobileMenu from "./mobile-menu";

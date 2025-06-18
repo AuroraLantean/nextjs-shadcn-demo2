@@ -18,7 +18,7 @@ import {
 	SidebarMenuSubItem,
 } from "@ui/sidebar";
 
-export function NavMain({
+export function SubSidebarMain({
 	items,
 }: {
 	items: {

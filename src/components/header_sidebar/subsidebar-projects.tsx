@@ -25,7 +25,7 @@ import {
 	useSidebar,
 } from "@ui/sidebar";
 
-export function NavProjects({
+export function SubSidebarProjects({
 	projects,
 }: {
 	projects: {

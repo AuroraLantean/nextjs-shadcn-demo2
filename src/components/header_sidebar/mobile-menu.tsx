@@ -2,7 +2,7 @@
 import React from "react";
 import { SidebarTrigger, useSidebar } from "@ui/sidebar";
 import { AlignJustify } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "@ui/button";
 
 const MobileMenu = () => {
 	const {
