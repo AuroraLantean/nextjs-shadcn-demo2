@@ -18,7 +18,7 @@ import { ChevronsUpDown, SquareActivity } from "lucide-react";
 
 import { useState } from "react";
 import DashboardLineItem from "../dashboard-line-item";
-import type { ApiStatus, BlockActivity } from "@/types";
+import type { ApiStatus, BlockActivity } from "@/types/rune-types";
 
 type props = {
 	blockActivity: BlockActivity[];

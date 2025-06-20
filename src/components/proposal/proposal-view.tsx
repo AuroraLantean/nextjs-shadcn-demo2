@@ -3,23 +3,8 @@ import { useNetworkVariable } from "@/config/network-func";
 import { useSuiClientQuery } from "@mysten/dapp-kit";
 import type { SuiObjectData } from "@mysten/sui/client";
 import { ll } from "@/lib/utils";
-import type { SuiID } from "@/config/config";
-
-type ProposalItemsProps = {
-	id: string;
-};
-
-const ProposalItem: React.FC<ProposalItemsProps> = ({ id }) => {
-	return (
-		<div className="p-4 border-blue-400 border-1 rounded-lg shadow-sm hover:border-amber-500 transition-colors">
-			<p className="text-xl font-semibold mb-2">Title: {id}</p>
-
-			<p className="text-gray-700 dark:text-gray-300">
-				Desc: What is your vote ?
-			</p>
-		</div>
-	);
-};
+import { ProposalItem } from "@proposal/proposal-item";
+import type { SuiID } from "@/types/sui-types";
 
 const ProposalView = () => {
 	const proposalbox = useNetworkVariable("proposalbox");

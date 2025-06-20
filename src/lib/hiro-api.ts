@@ -7,7 +7,7 @@ import {
 	type BlockActivity,
 	blockActivityToClient,
 	type Etching,
-} from "@/types";
+} from "@/types/rune-types";
 import { mostFrequent } from "./helpers";
 
 // Get address balances /runes/v1/addresses/{address}/balances

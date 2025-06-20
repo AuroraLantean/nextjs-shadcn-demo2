@@ -17,7 +17,7 @@ import {
 import { ChevronsUpDown, FolderKanban } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import type { AddressActivityForRune } from "@/types";
+import type { AddressActivityForRune } from "@/types/rune-types";
 import DashboardLineItem from "../dashboard-line-item";
 
 type props = {

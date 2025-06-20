@@ -1,4 +1,4 @@
-import ProposalView from "@components/proposal-view";
+import ProposalView from "@proposal/proposal-view";
 
 const suiDashboard = () => {
 	return (

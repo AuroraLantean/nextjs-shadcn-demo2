@@ -1,8 +1,5 @@
 import { ll } from "@/lib/utils";
 
-export type SuiID = {
-	id: string;
-};
 export type SuiNetwork = "devnet" | "mainnet" | "testnet" | undefined;
 export const SUI_NETWORK: SuiNetwork = (process.env.NEXT_PUBLIC_SUI_NETWORK ||
 	"testnet") as SuiNetwork;
