@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Button, buttonVariants } from "./ui/button";
+import { Button, buttonVariants } from "@ui/button";
 import { ModeToggle } from "./mode-toggle";
 import { SidebarTrigger } from "@ui/sidebar";
 //import StacksConnect from "./stacks-connect";
 //import StacksConnect2 from "./stacks-connect2";
-import StacksConnectTemplate from "./stacks-connect-template";
+import StacksConnectTemplate from "@components/stacks-connect-template";
 
 /*const ConnectWallet = dynamic(() => import('@components/connect-wallet'), {
   ssr: false

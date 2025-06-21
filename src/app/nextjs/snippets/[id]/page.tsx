@@ -8,8 +8,9 @@ type SnippetShowPageProps = {
 	}>;
 };
 export default async function SnippetShowPage(props: SnippetShowPageProps) {
+	return <div>TODO</div>;
 	//await new Promise((r) => setTimeout(r, 2000));
-	const { id } = await props.params;
+	/*const { id } = await props.params;
 	const snippet = await actions.readSnippet(id);
 	if (!snippet) {
 		notFound();
@@ -39,9 +40,9 @@ export default async function SnippetShowPage(props: SnippetShowPageProps) {
 				<code>{snippet.code}</code>
 			</pre>
 		</div>
-	);
+	);*/
 }
-
+/*
 export async function generateStaticParams() {
 	const snippets = await actions.readSnippets();
 	return snippets.map((snippet) => {
@@ -49,7 +50,7 @@ export async function generateStaticParams() {
 			id: snippet.id.toString(),
 		};
 	});
-}
+}*/
 
 /*[ Server ] Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
   {}
