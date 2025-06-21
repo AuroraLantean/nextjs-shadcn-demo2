@@ -9,6 +9,9 @@ export function cn(...inputs: ClassValue[]) {
 export const ll = console.log;
 
 export const formatUnixTime = (timestampSec: number) => {
+	if (isUnixTimeExpired(timestampSec)) {
+		return "Expired";
+	}
 	return new Date(timestampSec * 1000).toLocaleString("en-US", {
 		month: "short",
 		day: "2-digit",
@@ -18,6 +21,8 @@ export const formatUnixTime = (timestampSec: number) => {
 		second: "2-digit",
 	});
 };
+export const isUnixTimeExpired = (unixTimeSec: number) =>
+	new Date(unixTimeSec * 1000) < new Date();
 
 export const mostFrequent = <T, K extends PropertyKey>(
 	arr: T[],

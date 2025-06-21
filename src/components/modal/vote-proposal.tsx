@@ -10,14 +10,19 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { ll } from "@/lib/utils";
+import type { ProposalOutput } from "@/types/sui-types";
 
 type Props = {
 	isModalOpen: boolean;
 	setModalState: (arg: boolean) => void;
+	proposal: ProposalOutput;
+	onVote: (votedYes: boolean) => void;
 };
 export const VoteProposal: React.FC<Props> = ({
 	isModalOpen,
 	setModalState,
+	proposal,
+	onVote,
 }) => {
 	const handleClick = (arg: number) => {
 		ll(`handleClick${arg}`);
@@ -29,17 +34,17 @@ export const VoteProposal: React.FC<Props> = ({
 				<DialogContent className="max-w-[425px]">
 					<DialogHeader>
 						<DialogTitle className="text-2xl font-bold ">
-							Make a vote
+							{proposal.title}
 						</DialogTitle>
-						<DialogDescription>Description:</DialogDescription>
+						<DialogDescription>{proposal.description}</DialogDescription>
 					</DialogHeader>
 					<div className="">
-						<p className="mb-6">Object Id:</p>
+						<p className="mb-6 break-all">{proposal.id.id}</p>
 						<div className="flex flex-col gap-4">
 							<div className="flex justify-between text-sm ">
-								<span>👍Yes votes: 100</span>
+								<span>👍Yes votes: {proposal.votedYesCount}</span>
 
-								<span>👎No votes: 1000</span>
+								<span>👎No votes: {proposal.votedNoCount}</span>
 							</div>
 						</div>
 					</div>

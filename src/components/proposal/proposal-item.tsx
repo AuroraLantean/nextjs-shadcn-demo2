@@ -2,7 +2,7 @@ import { useSuiClientQuery } from "@mysten/dapp-kit";
 import type { SuiObjectData } from "@mysten/sui/client";
 import { ErrText } from "@proposal/err-text";
 import type { ProposalInput, ProposalOutput } from "@/types/sui-types";
-import { formatUnixTime, ll } from "@/lib/utils";
+import { formatUnixTime, isUnixTimeExpired, ll } from "@/lib/utils";
 import { VoteProposal } from "../modal/vote-proposal";
 import { useState } from "react";
 
@@ -30,35 +30,61 @@ export const ProposalItem: React.FC<ProposalItemsProps> = ({ id }) => {
 	const proposal = parseProposal(objResp.data);
 	if (!proposal) return <ErrText text="No data found!" />;
 
+	const expiration = proposal.expiration;
+	//const expiration = 1;
+	const isExpired = isUnixTimeExpired(expiration);
+
 	return (
 		<>
 			<div
-				onClick={() => setModalState(true)}
-				onKeyUp={() => setModalState(true)}
-				className="p-4 border rounded-lg shadow-sm bg-white dark:bg-gray-800 hover:border-blue-500 transition-colors"
+				onClick={() => !isExpired && setModalState(true)}
+				onKeyUp={() => !isExpired && setModalState(true)}
+				className={`p-4 border rounded-lg shadow-sm bg-gray-200 dark:bg-gray-800  transition-colors ${isExpired ? "cursor-not-allowed border-gray-600" : "hover:border-blue-500 cursor-pointer"}`}
 			>
-				<p className="text-xl font-semibold mb-2 break-all">{proposal.title}</p>
+				<p
+					className={`text-xl font-semibold mb-2 break-all ${isExpired ? "text-gray-600" : "text-primary"}`}
+				>
+					{proposal.title}
+				</p>
 
-				<p className="break-all">{proposal.description}</p>
+				<p
+					className={`break-all ${isExpired ? "text-gray-600" : "text-primary"}`}
+				>
+					{proposal.description}
+				</p>
+				<p className="break-all">{proposal.id.id}</p>
 
 				<div className="flex items-center justify-between mt-4">
 					<div className="flex space-x-4">
-						<div className="flex items-center text-green-600">
+						<div
+							className={`flex items-center ${isExpired ? "text-green-800" : "text-green-600"}`}
+						>
 							<span className="mr-1">👍</span>
 
 							{proposal.votedYesCount}
 						</div>
 
-						<div className="flex items-center text-red-600">
+						<div
+							className={`flex items-center ${isExpired ? "text-red-800" : "text-red-600"}`}
+						>
 							<span className="mr-1">👎</span>
 
 							{proposal.votedNoCount}
 						</div>
-						<ErrText text={formatUnixTime(proposal.expiration)} />
+						<p
+							className={`${isExpired ? "text-gray-600" : "text-primary"} text-sm`}
+						>
+							{formatUnixTime(expiration)}
+						</p>
 					</div>
 				</div>
 			</div>
-			<VoteProposal isModalOpen={isModalOpen} setModalState={setModalState} />
+			<VoteProposal
+				isModalOpen={isModalOpen}
+				setModalState={setModalState}
+				proposal={proposal}
+				onVote={(votedYes: boolean) => console.log(votedYes)}
+			/>
 		</>
 	);
 };
