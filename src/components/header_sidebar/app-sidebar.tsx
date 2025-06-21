@@ -172,10 +172,10 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	return (
 		<Sidebar collapsible="offcanvas" {...props}>
-			<SidebarHeader>
+			<SidebarHeader className="bg-sky-400 dark:bg-secondary">
 				<TeamSwitcher teams={data.teams} />
 			</SidebarHeader>
-			<SidebarContent>
+			<SidebarContent className="bg-sky-300 dark:bg-secondary">
 				<SidebarGroup>
 					<SidebarGroupLabel>Quick Pages</SidebarGroupLabel>
 					<SidebarGroupContent>
@@ -196,7 +196,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				<SubSidebarMain items={data.subsidebar} />
 				<SubSidebarProjects projects={data.projects} />
 			</SidebarContent>
-			<SidebarFooter>
+			<SidebarFooter className="bg-sky-400 dark:bg-secondary">
 				<SubsidebarUser user={data.user} />
 			</SidebarFooter>
 			<SidebarRail />

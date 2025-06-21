@@ -25,7 +25,7 @@ export default function Header1() {
 	//videow-full absolute z-10
 	//contaienr relative text-xl flex-wrap mx-auto
 	return (
-		<header className="flex-row w-full  justify-between bg-sky-800 hidden sm:block">
+		<header className="flex-row w-full  justify-between bg-sky-200 dark:bg-secondary hidden sm:block">
 			<div className="flex items-center w-full justify-between gap-x-2  p-4">
 				<div className="flex items-center space-x-2 ">
 					<Link href="/" className="font-bond text-3xl">
