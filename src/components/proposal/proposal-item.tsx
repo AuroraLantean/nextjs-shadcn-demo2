@@ -3,8 +3,34 @@ import type { SuiObjectData } from "@mysten/sui/client";
 import { ErrText } from "@proposal/err-text";
 import type { ProposalInput, ProposalOutput } from "@/types/sui-types";
 import { formatUnixTime, isUnixTimeExpired, ll } from "@/lib/utils";
-import { VoteProposal } from "../modal/vote-proposal";
+import { VoteProposalModal } from "../modal/vote-proposal";
 import { useState } from "react";
+
+/*public struct Proposal has key {
+    id: UID,
+    title: String,
+    description: String,
+    voted_yes_count: u64,
+    voted_no_count: u64,
+    expiration: u64,
+    owner: address,
+    status: ProposalStatus,
+    voters: Table<address, bool>,
+} */
+const parseProposal = (data: SuiObjectData): ProposalOutput | null => {
+	if (data.content?.dataType !== "moveObject") return null;
+	//debugger;
+	ll(data.content.fields);
+	const { voted_yes_count, voted_no_count, expiration, ...rest } = data.content
+		.fields as ProposalInput;
+
+	return {
+		...rest,
+		votedYesCount: Number(voted_yes_count),
+		votedNoCount: Number(voted_no_count),
+		expiration: Number(expiration),
+	};
+};
 
 type ProposalItemsProps = {
 	id: string;
@@ -79,7 +105,7 @@ export const ProposalItem: React.FC<ProposalItemsProps> = ({ id }) => {
 					</div>
 				</div>
 			</div>
-			<VoteProposal
+			<VoteProposalModal
 				isModalOpen={isModalOpen}
 				setModalState={setModalState}
 				proposal={proposal}
@@ -87,19 +113,4 @@ export const ProposalItem: React.FC<ProposalItemsProps> = ({ id }) => {
 			/>
 		</>
 	);
-};
-
-const parseProposal = (data: SuiObjectData): ProposalOutput | null => {
-	if (data.content?.dataType !== "moveObject") return null;
-	//debugger;
-	ll(data.content.fields);
-	const { voted_yes_count, voted_no_count, expiration, ...rest } = data.content
-		.fields as ProposalInput;
-
-	return {
-		...rest,
-		votedYesCount: Number(voted_yes_count),
-		votedNoCount: Number(voted_no_count),
-		expiration: Number(expiration),
-	};
 };

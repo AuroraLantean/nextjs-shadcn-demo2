@@ -7,12 +7,12 @@ import { ProposalItem } from "@proposal/proposal-item";
 import type { SuiID } from "@/types/sui-types";
 
 const ProposalView = () => {
-	const proposalbox = useNetworkVariable("proposalbox");
-	ll("proposalbox", proposalbox);
-	if (!proposalbox) {
+	const proposalbox_id = useNetworkVariable("proposalbox");
+	ll("proposalbox_id", proposalbox_id);
+	if (!proposalbox_id) {
 		return (
 			<div className="text-center text-gray-500">
-				invalid proposalbox: {proposalbox}
+				invalid proposalbox_id: {proposalbox_id}
 			</div>
 		);
 	}
@@ -22,7 +22,7 @@ const ProposalView = () => {
 		isPending,
 		error,
 	} = useSuiClientQuery("getObject", {
-		id: proposalbox,
+		id: proposalbox_id,
 		options: {
 			showContent: true,
 			//showBcs, showDisplay, showOwner, showPreviousTransaction, showStorageRebate, showType
@@ -40,14 +40,14 @@ const ProposalView = () => {
 		<>
 			<h1 className="text-4xl font-bold mb-8">New Proposals</h1>
 			<div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
-				{getProposalBoxFields(objResp.data)?.proposals_ids.map((id) => (
+				{parseProposalBoxData(objResp.data)?.proposals_ids.map((id) => (
 					<ProposalItem key={id} id={id} />
 				))}
 			</div>
 		</>
 	);
 };
-const getProposalBoxFields = (data: SuiObjectData) => {
+const parseProposalBoxData = (data: SuiObjectData) => {
 	if (data.content?.dataType !== "moveObject") return null;
 	return data.content.fields as {
 		id: SuiID;
