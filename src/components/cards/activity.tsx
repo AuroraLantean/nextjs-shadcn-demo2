@@ -15,9 +15,8 @@ import {
 	CollapsibleTrigger,
 } from "@ui/collapsible";
 import { ChevronsUpDown, FolderKanban } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
-import type { AddressActivityForRune } from "@/types/rune-types";
+import type { AddressActivityForRune } from "@/lib/rune-funcs";
 import DashboardLineItem from "../dashboard-line-item";
 
 type props = {

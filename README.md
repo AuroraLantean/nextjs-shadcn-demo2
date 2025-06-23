@@ -1,15 +1,30 @@
 # Demo2-NextJs15-React19-Shadcn
 
-TODO: Next.js Top 7 Security Best Practices (Checklist)
+## Deployment
+https://nextjs-shadcn-demo2.vercel.app/sui
+
+## TODO
+Next.js Top 7 Security Best Practices (Checklist)
 https://www.youtube.com/watch?v=yDjXW-0Gi6k
 
-TODO: https://gist.github.com/ECBSJ/0cd822062a998ada1393a830a48c1043
+https://gist.github.com/ECBSJ/0cd822062a998ada1393a830a48c1043
 https://www.youtube.com/watch?v=5sh6Gt3ojuw&t=365s
 
-TODO: etching mint bitcoin runes javascript
+etching mint bitcoin runes javascript
 https://docs.hiro.so/stacks/connect/guides/authenticate-users
 
 https://github.com/hirosystems/connect?tab=readme-ov-file
+
+@rainbow-me/rainbowkit
+@react-email/components
+@react-email/tailwind
+@tanstack/react-table
+@web3modal/wagmi
+resend
+viem
+wagmi
+ws, zod
+
 
 ## Warning
 Unpin or uninstall Xverse crypto wallet extension in the Chrome Browser, or you may get this error:

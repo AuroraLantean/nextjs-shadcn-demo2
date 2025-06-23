@@ -8,10 +8,11 @@ import TanstackProvider from "@providers/tanstack-provider";
 import Footer from "@header_sidebar/footer";
 import MobileMenu from "@header_sidebar/mobile-menu";
 import { after } from "next/server";
-import { ll } from "@lib/utils";
+import { ll } from "@/lib/utils";
 import Header1 from "@header_sidebar/header1";
 import SuiClientWalletProvider from "@/components/providers/sui-clientwallet-provider";
 import "@mysten/dapp-kit/dist/index.css";
+import { Toaster } from "@ui/sonner";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -27,7 +28,12 @@ const geistMono = localFont({
 export const metadata: Metadata = {
 	title: "Shadcn NextJs 15 + React 19",
 	description: "Shadcn NextJs 15 + React 19",
-};
+	icons: {
+		icon: "/mystery_book.jpeg",
+		shortcut: "/mystery_book.jpeg",
+		apple: "/apple-svgrepo-com.svg",
+	},
+}; //icon is favicon; shortcut will show up at wallet txn
 
 export default function RootLayout({
 	children,
@@ -67,6 +73,7 @@ export default function RootLayout({
 										</div>
 									</section>
 								</main>
+								<Toaster position="top-right" />
 							</SidebarProvider>
 						</NextThemeProvider>
 					</SuiClientWalletProvider>

@@ -18,7 +18,7 @@ import { ChevronsUpDown, WalletCards } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import DashboardLineItem from "../dashboard-line-item";
-import type { AddressBalances } from "@/types/rune-types";
+import type { AddressBalances } from "@/lib/rune-funcs";
 
 type props = {
 	addressBalances: AddressBalances[];

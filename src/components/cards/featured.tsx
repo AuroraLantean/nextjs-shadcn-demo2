@@ -13,7 +13,7 @@ import { Button, buttonVariants } from "@ui/button";
 //import { Badge } from "@ui/badge";
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
-import type { ApiStatus, Etching } from "@/types/rune-types";
+import type { ApiStatus, Etching } from "@/lib/rune-funcs";
 import { Badge } from "../ui/badge";
 import { Separator } from "../ui/separator";
 

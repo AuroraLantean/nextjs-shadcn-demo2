@@ -25,8 +25,6 @@ export const formatUnixTime = (timestampMilisec: number) => {
 export const isUnixTimeExpired = (timestampMilisec: number) =>
 	new Date(timestampMilisec) < new Date();
 
-//--------------== Sui
-
 //--------------==
 export const mostFrequent = <T, K extends PropertyKey>(
 	arr: T[],

@@ -1,7 +1,7 @@
 import { useSuiClientQuery } from "@mysten/dapp-kit";
 import type { SuiObjectData } from "@mysten/sui/client";
 import { ErrText } from "@proposal/err-text";
-import type { ProposalInput, ProposalOutput } from "@/types/sui-types";
+import type { Proposal, SuiID } from "@/lib/sui-funcs";
 import { formatUnixTime, isUnixTimeExpired, ll } from "@/lib/utils";
 import { VoteProposalModal } from "../modal/vote-proposal";
 import { useState } from "react";
@@ -17,12 +17,22 @@ import { useState } from "react";
     status: ProposalStatus,
     voters: Table<address, bool>,
 } */
-const parseProposal = (data: SuiObjectData): ProposalOutput | null => {
+const parseProposal = (data: SuiObjectData): Proposal | null => {
 	if (data.content?.dataType !== "moveObject") return null;
 	//debugger;
-	ll(data.content.fields);
+	ll("parseProposal:", data.content.fields);
 	const { voted_yes_count, voted_no_count, expiration, ...rest } = data.content
-		.fields as ProposalInput;
+		.fields as {
+		id: SuiID;
+		title: string;
+		description: string;
+		voted_yes_count: string;
+		voted_no_count: string;
+		expiration: string;
+		owner: string;
+		//status: ProposalStatus,
+		voter_registry: string[];
+	};
 
 	return {
 		...rest,

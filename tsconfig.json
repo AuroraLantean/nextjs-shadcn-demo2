@@ -27,10 +27,7 @@
 			"@header_sidebar/*": ["./src/components/header_sidebar/*"],
 			"@wallet/*": ["./src/components/wallet/*"],
 			"@proposal/*": ["./src/components/proposal/*"],
-			"@cards/*": ["./src/components/cards/*"],
-			"@hooks/*": ["./src/hooks/*"],
-			"@config/*": ["./src/config/*"],
-			"@lib/*": ["./src/lib/*"]
+			"@cards/*": ["./src/components/cards/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

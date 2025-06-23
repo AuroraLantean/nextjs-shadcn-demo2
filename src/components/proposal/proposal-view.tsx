@@ -4,7 +4,8 @@ import { useSuiClientQuery } from "@mysten/dapp-kit";
 import type { SuiObjectData } from "@mysten/sui/client";
 import { ll } from "@/lib/utils";
 import { ProposalItem } from "@proposal/proposal-item";
-import type { SuiID } from "@/types/sui-types";
+import { parseVoteNfts, type SuiID } from "@/lib/sui-funcs";
+import { useVoteNfts } from "@/lib/sui-funcs";
 
 const ProposalView = () => {
 	const proposalbox_id = useNetworkVariable("proposalbox");
@@ -16,6 +17,7 @@ const ProposalView = () => {
 			</div>
 		);
 	}
+	const { data: voteNftsRes } = useVoteNfts(); //Must be called before useSuiClientQuery()
 
 	const {
 		data: objResp,
@@ -35,6 +37,9 @@ const ProposalView = () => {
 
 	if (!objResp.data)
 		return <div className="text-center text-red-500">No Proposal Found...</div>;
+
+	const voteNfts = parseVoteNfts(voteNftsRes);
+	ll("voteNfts:", voteNfts);
 
 	return (
 		<>

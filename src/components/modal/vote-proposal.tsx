@@ -9,6 +9,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
+import { toast } from "sonner";
 import {
 	ConnectButton,
 	useCurrentWallet,
@@ -16,14 +17,14 @@ import {
 	useSuiClient,
 } from "@mysten/dapp-kit";
 import { Transaction } from "@mysten/sui/transactions";
-import { useNetworkVariable } from "@config/network-func";
+import { useNetworkVariable } from "@/config/network-func";
 import { ll } from "@/lib/utils";
-import type { ProposalOutput } from "@/types/sui-types";
+import type { Proposal } from "@/lib/sui-funcs";
 
 type Props = {
 	isModalOpen: boolean;
 	setModalState: (arg: boolean) => void;
-	proposal: ProposalOutput;
+	proposal: Proposal;
 	onVote: (votedYes: boolean) => void;
 };
 export const VoteProposalModal: React.FC<Props> = ({
@@ -56,13 +57,19 @@ export const VoteProposalModal: React.FC<Props> = ({
 			],
 			target: `${packageId}::proposal::vote`,
 		});
+		toast("About to sign the transaction");
+
 		signAndExecute(
 			{
 				transaction: tx,
 			},
 			{
 				onError: () => {
-					alert("Tx Failed!");
+					toast.error("Voting failed", {
+						style: {
+							background: "red",
+						},
+					});
 				},
 				onSuccess: async ({ digest }) => {
 					const { effects } = await suiClient.waitForTransaction({
@@ -72,9 +79,15 @@ export const VoteProposalModal: React.FC<Props> = ({
 						},
 					});
 					ll("effects", effects);
-					ll("transactionDigest:", effects?.transactionDigest);
+					ll("digest:", digest);
 					const nftId = effects?.created?.[0]?.reference.objectId;
 					ll("nft id:", nftId);
+					toast.success("Voting Successful", {
+						description: digest,
+						style: {
+							background: "green",
+						},
+					});
 					onVote(Boolean(arg));
 				},
 			},
