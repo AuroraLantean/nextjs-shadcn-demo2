@@ -4,7 +4,7 @@ import { useSuiClientQuery } from "@mysten/dapp-kit";
 import type { SuiObjectData } from "@mysten/sui/client";
 import { ll } from "@/lib/utils";
 import { ProposalItem } from "@proposal/proposal-item";
-import { parseVoteNfts, type SuiID } from "@/lib/sui-funcs";
+import { parseVoteNfts, type VoteNft, type SuiID } from "@/lib/sui-funcs";
 import { useVoteNfts } from "@/lib/sui-funcs";
 
 const ProposalView = () => {
@@ -46,12 +46,20 @@ const ProposalView = () => {
 			<h1 className="text-4xl font-bold mb-8">New Proposals</h1>
 			<div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
 				{parseProposalBoxData(objResp.data)?.proposals_ids.map((id) => (
-					<ProposalItem key={id} id={id} />
+					<ProposalItem
+						key={id}
+						id={id}
+						hasVoted={checkVoteNfts(voteNfts, id)}
+					/>
 				))}
 			</div>
 		</>
 	);
 };
+const checkVoteNfts = (nfts: VoteNft[], proposalId: string) => {
+	return nfts.some((nft) => nft.proposalId === proposalId);
+};
+
 const parseProposalBoxData = (data: SuiObjectData) => {
 	if (data.content?.dataType !== "moveObject") return null;
 	return data.content.fields as {

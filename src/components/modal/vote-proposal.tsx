@@ -25,17 +25,23 @@ type Props = {
 	isModalOpen: boolean;
 	setModalState: (arg: boolean) => void;
 	proposal: Proposal;
+	hasVoted: boolean;
 	onVote: (votedYes: boolean) => void;
 };
 export const VoteProposalModal: React.FC<Props> = ({
 	isModalOpen,
 	setModalState,
 	proposal,
+	hasVoted,
 	onVote,
 }) => {
 	const { connectionStatus } = useCurrentWallet();
 	const suiClient = useSuiClient();
-	const { mutate: signAndExecute } = useSignAndExecuteTransaction();
+	const {
+		mutate: signAndExecute,
+		isPending,
+		isSuccess,
+	} = useSignAndExecuteTransaction();
 
 	const packageId = useNetworkVariable("packageId");
 	const proposalbox = useNetworkVariable("proposalbox");
@@ -94,6 +100,7 @@ export const VoteProposalModal: React.FC<Props> = ({
 		);
 		setModalState(false);
 	};
+	const votingDisabled = hasVoted || isPending || isSuccess;
 
 	return (
 		<Dialog open={isModalOpen} onOpenChange={setModalState}>
@@ -108,6 +115,15 @@ export const VoteProposalModal: React.FC<Props> = ({
 					<div className="">
 						<p className="mb-6 break-all">{proposal.id.id}</p>
 						<div className="flex flex-col gap-4">
+							{hasVoted || isSuccess ? (
+								<div className="w-full font-extrabold p-1 rounded-full text-center text-2xl">
+									Voted
+								</div>
+							) : (
+								<div className="w-full font-extrabold p-1 rounded-full text-center text-2xl">
+									Not Voted
+								</div>
+							)}
 							<div className="flex justify-between text-sm ">
 								<span>👍Yes votes: {proposal.votedYesCount}</span>
 
@@ -120,7 +136,8 @@ export const VoteProposalModal: React.FC<Props> = ({
 							<Button
 								type="button"
 								variant="default"
-								className="bg-green-400 grow text-gray-600 hover:text-green-300"
+								className="bg-green-400 grow text-gray-600 hover:text-green-300 disabled:bg-gray-300 disabled:cursor-not-allowed"
+								disabled={votingDisabled}
 								onClick={() => vote(1)}
 							>
 								Yes
@@ -128,7 +145,8 @@ export const VoteProposalModal: React.FC<Props> = ({
 							<Button
 								type="button"
 								variant="default"
-								className="bg-red-400 grow text-gray-600  hover:text-red-500"
+								className="bg-red-400 grow text-gray-600  hover:text-red-500 disabled:bg-gray-300 disabled:cursor-not-allowed"
+								disabled={votingDisabled}
 								onClick={() => vote(0)}
 							>
 								No

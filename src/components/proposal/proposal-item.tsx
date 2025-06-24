@@ -44,8 +44,12 @@ const parseProposal = (data: SuiObjectData): Proposal | null => {
 
 type ProposalItemsProps = {
 	id: string;
+	hasVoted: boolean;
 };
-export const ProposalItem: React.FC<ProposalItemsProps> = ({ id }) => {
+export const ProposalItem: React.FC<ProposalItemsProps> = ({
+	id,
+	hasVoted,
+}) => {
 	const [isModalOpen, setModalState] = useState(false);
 	const {
 		data: objResp,
@@ -119,6 +123,7 @@ export const ProposalItem: React.FC<ProposalItemsProps> = ({ id }) => {
 				isModalOpen={isModalOpen}
 				setModalState={setModalState}
 				proposal={proposal}
+				hasVoted={hasVoted}
 				onVote={(votedYes: boolean) => console.log(votedYes)}
 			/>
 		</>
