@@ -1,7 +1,7 @@
 import { useSuiClientQuery } from "@mysten/dapp-kit";
 import type { SuiObjectData } from "@mysten/sui/client";
 import { ErrText } from "@proposal/err-text";
-import type { Proposal, SuiID } from "@/lib/sui-funcs";
+import type { Proposal, SuiID, VoteNft } from "@/lib/sui-funcs";
 import { formatUnixTime, isUnixTimeExpired, ll } from "@/lib/utils";
 import { VoteProposalModal } from "../modal/vote-proposal";
 import { useState } from "react";
@@ -44,15 +44,19 @@ const parseProposal = (data: SuiObjectData): Proposal | null => {
 
 type ProposalItemsProps = {
 	id: string;
-	hasVoted: boolean;
+	voteNft: VoteNft | undefined;
+	onProposalview: () => void;
+	//hasVoted: boolean;
 };
 export const ProposalItem: React.FC<ProposalItemsProps> = ({
 	id,
-	hasVoted,
+	voteNft,
+	onProposalview,
 }) => {
 	const [isModalOpen, setModalState] = useState(false);
 	const {
 		data: objResp,
+		refetch: refetchProposal,
 		error,
 		isPending,
 	} = useSuiClientQuery("getObject", {
@@ -81,11 +85,16 @@ export const ProposalItem: React.FC<ProposalItemsProps> = ({
 				onKeyUp={() => !isExpired && setModalState(true)}
 				className={`p-4 border rounded-lg shadow-sm bg-gray-200 dark:bg-gray-800  transition-colors ${isExpired ? "cursor-not-allowed border-gray-600" : "hover:border-blue-500 cursor-pointer"}`}
 			>
-				<p
-					className={`text-xl font-semibold mb-2 break-all ${isExpired ? "text-gray-600" : "text-primary"}`}
-				>
-					{proposal.title}
-				</p>
+				<div className="flex justify-between">
+					<p
+						className={`text-xl font-semibold mb-2 break-all ${isExpired ? "text-gray-600" : "text-primary"}`}
+					>
+						{proposal.title}
+					</p>
+					{!!voteNft && (
+						<img className="w-8 h-8 rounded-full" src={voteNft?.url} />
+					)}
+				</div>
 
 				<p
 					className={`break-all ${isExpired ? "text-gray-600" : "text-primary"}`}
@@ -123,8 +132,12 @@ export const ProposalItem: React.FC<ProposalItemsProps> = ({
 				isModalOpen={isModalOpen}
 				setModalState={setModalState}
 				proposal={proposal}
-				hasVoted={hasVoted}
-				onVote={(votedYes: boolean) => console.log(votedYes)}
+				hasVoted={!!voteNft}
+				onProposalItem={(voteBool: boolean) => {
+					ll("onProposalItem:", voteBool);
+					refetchProposal(); //update yes/no votes
+					onProposalview();
+				}}
 			/>
 		</>
 	);

@@ -19,21 +19,21 @@ import {
 import { Transaction } from "@mysten/sui/transactions";
 import { useNetworkVariable } from "@/config/network-func";
 import { ll } from "@/lib/utils";
-import type { Proposal } from "@/lib/sui-funcs";
+import type { Proposal, VoteEvent } from "@/lib/sui-funcs";
 
 type Props = {
 	isModalOpen: boolean;
 	setModalState: (arg: boolean) => void;
 	proposal: Proposal;
 	hasVoted: boolean;
-	onVote: (votedYes: boolean) => void;
+	onProposalItem: (votedYes: boolean) => void;
 };
 export const VoteProposalModal: React.FC<Props> = ({
 	isModalOpen,
 	setModalState,
 	proposal,
 	hasVoted,
-	onVote,
+	onProposalItem,
 }) => {
 	const { connectionStatus } = useCurrentWallet();
 	const suiClient = useSuiClient();
@@ -41,6 +41,7 @@ export const VoteProposalModal: React.FC<Props> = ({
 		mutate: signAndExecute,
 		isPending,
 		isSuccess,
+		reset, //resets isPending and isSuccess values so other accounts(from the same wallet) can have those initial conditions
 	} = useSignAndExecuteTransaction();
 
 	const packageId = useNetworkVariable("packageId");
@@ -94,7 +95,30 @@ export const VoteProposalModal: React.FC<Props> = ({
 							background: "green",
 						},
 					});
-					onVote(Boolean(arg));
+
+					//Catch VoteEvent
+					const eventResult = await suiClient.queryEvents({
+						query: { Transaction: digest },
+					});
+					if (eventResult.data.length > 0) {
+						ll("eventResult.data", eventResult.data);
+						const firstEvent = eventResult.data[0].parsedJson as VoteEvent;
+
+						const id = firstEvent.proposal_id || "proposal_id not found";
+
+						const voter = firstEvent.voter || "voter not found";
+
+						let voteValue: any = firstEvent.vote_value;
+						if (voteValue === undefined) voteValue = "vote_value not found";
+
+						ll(
+							`Event captured. id: ${id}, voter: ${voter}, voteValue: ${voteValue}`,
+						);
+					} else {
+						ll("No event found!");
+					}
+					reset();
+					onProposalItem(Boolean(arg));
 				},
 			},
 		);

@@ -86,3 +86,10 @@ export const parseVoteNft = (
 		...rest,
 	};
 };
+
+//add ? to make sure it exists
+export type VoteEvent = {
+	proposal_id?: string;
+	voter?: string;
+	vote_value?: boolean;
+};

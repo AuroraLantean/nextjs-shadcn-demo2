@@ -17,7 +17,7 @@ const ProposalView = () => {
 			</div>
 		);
 	}
-	const { data: voteNftsRes } = useVoteNfts(); //Must be called before useSuiClientQuery()
+	const { data: voteNftsRes, refetch: refetchNfts } = useVoteNfts(); //Must be called before useSuiClientQuery()
 
 	const {
 		data: objResp,
@@ -49,7 +49,9 @@ const ProposalView = () => {
 					<ProposalItem
 						key={id}
 						id={id}
-						hasVoted={checkVoteNfts(voteNfts, id)}
+						onProposalview={() => refetchNfts()}
+						voteNft={voteNfts.find((nft) => nft.proposalId === id)}
+						//hasVoted={checkVoteNfts(voteNfts, id)}
 					/>
 				))}
 			</div>
