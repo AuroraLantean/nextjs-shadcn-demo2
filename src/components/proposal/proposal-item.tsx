@@ -1,7 +1,7 @@
 import { useSuiClientQuery } from "@mysten/dapp-kit";
 import type { SuiObjectData } from "@mysten/sui/client";
 import { ErrText } from "@proposal/err-text";
-import type { Proposal, SuiID, VoteNft } from "@/lib/sui-funcs";
+import type { Proposal, ProposalStatus, SuiID, VoteNft } from "@/lib/sui-funcs";
 import { formatUnixTime, isUnixTimeExpired, ll } from "@/lib/utils";
 import { VoteProposalModal } from "../modal/vote-proposal";
 import { useState } from "react";
@@ -30,7 +30,7 @@ const parseProposal = (data: SuiObjectData): Proposal | null => {
 		voted_no_count: string;
 		expiration: string;
 		owner: string;
-		//status: ProposalStatus,
+		status: ProposalStatus;
 		voter_registry: string[];
 	};
 
@@ -46,7 +46,6 @@ type ProposalItemsProps = {
 	id: string;
 	voteNft: VoteNft | undefined;
 	onProposalview: () => void;
-	//hasVoted: boolean;
 };
 export const ProposalItem: React.FC<ProposalItemsProps> = ({
 	id,
@@ -69,25 +68,28 @@ export const ProposalItem: React.FC<ProposalItemsProps> = ({
 
 	if (error) return <ErrText isError text={`Error: ${error.message}`} />;
 
-	if (!objResp.data) return <ErrText text="Not Found" />;
+	//if the proposal has been deleted
+	if (!objResp.data) return null;
 
 	const proposal = parseProposal(objResp.data);
+	ll("proposal:", proposal);
 	if (!proposal) return <ErrText text="No data found!" />;
 
 	const expiration = proposal.expiration;
 	//const expiration = 1;
-	const isExpired = isUnixTimeExpired(expiration);
+	const isDelisted = proposal.status.variant === "Delisted";
+	const isNonActive = isUnixTimeExpired(expiration) || isDelisted;
 
 	return (
 		<>
 			<div
-				onClick={() => !isExpired && setModalState(true)}
-				onKeyUp={() => !isExpired && setModalState(true)}
-				className={`p-4 border rounded-lg shadow-sm bg-gray-200 dark:bg-gray-800  transition-colors ${isExpired ? "cursor-not-allowed border-gray-600" : "hover:border-blue-500 cursor-pointer"}`}
+				onClick={() => !isNonActive && setModalState(true)}
+				onKeyUp={() => !isNonActive && setModalState(true)}
+				className={`p-4 border rounded-lg shadow-sm bg-gray-200 dark:bg-gray-800  transition-colors ${isNonActive ? "cursor-not-allowed border-gray-600" : "hover:border-blue-500 cursor-pointer"}`}
 			>
 				<div className="flex justify-between">
 					<p
-						className={`text-xl font-semibold mb-2 break-all ${isExpired ? "text-gray-600" : "text-primary"}`}
+						className={`text-xl font-semibold mb-2 break-all ${isNonActive ? "text-gray-600" : "text-primary"}`}
 					>
 						{proposal.title}
 					</p>
@@ -97,16 +99,20 @@ export const ProposalItem: React.FC<ProposalItemsProps> = ({
 				</div>
 
 				<p
-					className={`break-all ${isExpired ? "text-gray-600" : "text-primary"}`}
+					className={`break-all ${isNonActive ? "text-gray-600" : "text-primary"}`}
 				>
 					{proposal.description}
 				</p>
-				<p className="break-all">{proposal.id.id}</p>
+				<p
+					className={`break-all ${isNonActive ? "text-gray-600" : "text-primary"}`}
+				>
+					{proposal.id.id}
+				</p>
 
 				<div className="flex items-center justify-between mt-4">
 					<div className="flex space-x-4">
 						<div
-							className={`flex items-center ${isExpired ? "text-green-800" : "text-green-600"}`}
+							className={`flex items-center ${isNonActive ? "text-green-800" : "text-green-600"}`}
 						>
 							<span className="mr-1">👍</span>
 
@@ -114,16 +120,16 @@ export const ProposalItem: React.FC<ProposalItemsProps> = ({
 						</div>
 
 						<div
-							className={`flex items-center ${isExpired ? "text-red-800" : "text-red-600"}`}
+							className={`flex items-center ${isNonActive ? "text-red-800" : "text-red-600"}`}
 						>
 							<span className="mr-1">👎</span>
 
 							{proposal.votedNoCount}
 						</div>
 						<p
-							className={`${isExpired ? "text-gray-600" : "text-primary"} text-sm`}
+							className={`${isNonActive ? "text-gray-600" : "text-primary"} text-sm`}
 						>
-							{formatUnixTime(expiration)}
+							{isDelisted ? "Delisted" : formatUnixTime(expiration)}
 						</p>
 					</div>
 				</div>

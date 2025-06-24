@@ -31,6 +31,9 @@ export const useVoteNfts = () => {
 export type SuiID = {
 	id: string;
 };
+export type ProposalStatus = {
+	variant: "Active" | "Delisted";
+};
 export type Proposal = {
 	id: SuiID;
 	title: string;
@@ -39,6 +42,7 @@ export type Proposal = {
 	votedNoCount: number;
 	expiration: number;
 	owner: string;
+	status: ProposalStatus;
 	voter_registry: string[];
 };
 

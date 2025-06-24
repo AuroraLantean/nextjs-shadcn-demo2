@@ -8,7 +8,7 @@ import {
 	blockActivityToClient,
 	type Etching,
 } from "@/lib/rune-funcs";
-import { mostFrequent } from "@lib/utils";
+import { mostFrequent } from "@/lib/utils";
 
 // Get address balances /runes/v1/addresses/{address}/balances
 // https://docs.hiro.so/bitcoin/runes/api/balances/address
