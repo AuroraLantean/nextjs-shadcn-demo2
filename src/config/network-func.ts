@@ -8,9 +8,18 @@ import {
 	DEVNET_PACKAGE_ID,
 	MAINNET_PACKAGE_ID,
 	TESTNET_PACKAGE_ID,
+	LOCAL_PROPOSAL_BOX,
+	LOCAL_PACKAGE_ID,
 } from "./config";
 
 const { networkConfig, useNetworkVariable } = createNetworkConfig({
+	localnet: {
+		url: getFullnodeUrl("localnet"),
+		variables: {
+			proposalbox: LOCAL_PROPOSAL_BOX,
+			packageId: LOCAL_PACKAGE_ID,
+		},
+	},
 	devnet: {
 		url: getFullnodeUrl("devnet"),
 		variables: {
