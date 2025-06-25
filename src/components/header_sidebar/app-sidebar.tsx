@@ -65,26 +65,18 @@ const data = {
 	],
 	subsidebar: [
 		{
-			title: "Sui Proposals",
+			title: "Sui",
 			url: "#",
 			icon: BookOpen,
 			isActive: true,
 			items: [
 				{
-					title: "List All",
-					url: "/sui",
+					title: "Sui Proposal",
+					url: "/sui-proposal",
 				},
 				{
-					title: "Add New",
-					url: "/sui/new",
-				},
-				{
-					title: "Vote",
-					url: "/sui/vote",
-				},
-				{
-					title: "List Prop1",
-					url: "/sui/1",
+					title: "Sui Fungible",
+					url: "/sui-fungible",
 				},
 			],
 		},
@@ -108,7 +100,7 @@ const data = {
 			],
 		},
 		{
-			title: "NextJs Demo",
+			title: "Postgres",
 			url: "#",
 			icon: Bot,
 			items: [
