@@ -9,7 +9,8 @@
     "fmt": "bunx biome format --write ./src",
     "lint": "bunx biome lint --write ./src",
     "lintnext": "next lint",
-    "build": "cp .env.prod .env.local && next build",
+    "buildlocal": "cp .env.prod .env.local && next build",
+    "build": "next build",
     "start": "next start",
     "exporthtml": "next export"
   },
