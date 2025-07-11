@@ -1,14 +1,17 @@
 import { Button } from "@ui/button";
+
 //import Hero from "@components/hero";
 //import homeImg from "@public/home.jpg";
-
-export default async function HomePage() {
+type Props = {};
+const HomePage = (props: Props) => {
 	return (
 		<div className="flex min-h-[600px] flex-col items-center justify-center p-10 gap-10 text-center">
 			<span>Hello World</span>
 		</div>
 	);
-} /*
+};
+export default HomePage;
+/*
 <div className="flex min-h-[600px] flex-col items-center justify-center p-10 gap-10 text-center">
 					<TooltipProvider>
 						<Tooltip>

@@ -1,7 +1,11 @@
 ignoredBuiltDependencies:
   - '@prisma/engines'
   - prisma
+  - protobufjs
+  - secretjs
   - sharp
+  - tiny-secp256k1
+
 onlyBuiltDependencies:
   - '@prisma/client'
   - '@tailwindcss/oxide'

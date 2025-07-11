@@ -1,20 +1,5 @@
 "use client";
 
-import type * as React from "react";
-import {
-	AudioWaveform,
-	BookOpen,
-	Wallet,
-	Bot,
-	Command,
-	Frame,
-	GalleryVerticalEnd,
-	MapPin,
-	PieChart,
-	Settings2,
-	SquareTerminal,
-} from "lucide-react";
-
 import { SubSidebarMain } from "@header_sidebar/subsidebar-main";
 import { SubSidebarProjects } from "@header_sidebar/subsidebar-projects";
 import { SubsidebarUser } from "@header_sidebar/subsidebar-user";
@@ -32,6 +17,20 @@ import {
 	SidebarMenuItem,
 	SidebarRail,
 } from "@ui/sidebar";
+import {
+	AudioWaveform,
+	BookOpen,
+	Bot,
+	Command,
+	Frame,
+	GalleryVerticalEnd,
+	MapPin,
+	PieChart,
+	Settings2,
+	SquareTerminal,
+	Wallet,
+} from "lucide-react";
+import type * as React from "react";
 
 const quickPages = [
 	{
@@ -77,6 +76,17 @@ const data = {
 				{
 					title: "Sui Fungible",
 					url: "/sui-fungible",
+				},
+			],
+		},
+		{
+			title: "Cosmos Secret",
+			url: "#",
+			icon: BookOpen,
+			items: [
+				{
+					title: "Cosmos Secret",
+					url: "/cosmos-secret",
 				},
 			],
 		},

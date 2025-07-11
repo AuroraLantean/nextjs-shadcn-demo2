@@ -35,3 +35,29 @@ export const MAINNET_PROPOSAL_ADMINCAP =
 	process.env.NEXT_PUBLIC_MAINNET_PROPOSAL_ADMINCAP;
 export const MAINNET_PROPOSAL_BOX =
 	process.env.NEXT_PUBLIC_MAINNET_PROPOSAL_BOX;
+
+//----------== Cosmos Secret
+export const secretNetworkUrl =
+	process.env.NEXT_PUBLIC_SECRET_NETWORK_URL || "";
+if (!secretNetworkUrl) {
+	throw new Error("SECRET_NETWORK_URL invalid");
+}
+export const secretNetworkId = process.env.NEXT_PUBLIC_SECRET_NETWORK_ID || "";
+if (!secretNetworkId) {
+	throw new Error("SECRET_NETWORK_ID invalid");
+}
+
+export const secretCtrtCodeId = process.env.NEXT_PUBLIC_SECRET_CONTRACT_CODE_ID;
+if (!secretCtrtCodeId) {
+	throw new Error("SECRET_CONTRACT_CODE_ID invalid");
+}
+export const secretCtrtCodeHash =
+	process.env.NEXT_PUBLIC_SECRET_CONTRACT_CODE_HASH;
+if (!secretCtrtCodeHash) {
+	throw new Error("SECRET_CONTRACT_CODE_HASH invalid");
+}
+export const secretCtrtAddress =
+	process.env.NEXT_PUBLIC_SECRET_CONTRACT_ADDRESS;
+if (!secretCtrtAddress) {
+	throw new Error("SECRET_CONTRACT_ADDRESS invalid");
+}
