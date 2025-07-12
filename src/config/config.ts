@@ -1,4 +1,10 @@
-import { ll } from "@/lib/utils";
+declare global {
+	interface Window {
+		keplr: any;
+		getEnigmaUtils: any;
+		getOfflineSigner: any;
+	}
+}
 
 export type SuiNetwork =
 	| "devnet"
@@ -47,17 +53,18 @@ if (!secretNetworkId) {
 	throw new Error("SECRET_NETWORK_ID invalid");
 }
 
-export const secretCtrtCodeId = process.env.NEXT_PUBLIC_SECRET_CONTRACT_CODE_ID;
+export const secretCtrtCodeId =
+	process.env.NEXT_PUBLIC_SECRET_CONTRACT_CODE_ID || "";
 if (!secretCtrtCodeId) {
 	throw new Error("SECRET_CONTRACT_CODE_ID invalid");
 }
 export const secretCtrtCodeHash =
-	process.env.NEXT_PUBLIC_SECRET_CONTRACT_CODE_HASH;
+	process.env.NEXT_PUBLIC_SECRET_CONTRACT_CODE_HASH || "";
 if (!secretCtrtCodeHash) {
 	throw new Error("SECRET_CONTRACT_CODE_HASH invalid");
 }
 export const secretCtrtAddress =
-	process.env.NEXT_PUBLIC_SECRET_CONTRACT_ADDRESS;
+	process.env.NEXT_PUBLIC_SECRET_CONTRACT_ADDRESS || "";
 if (!secretCtrtAddress) {
 	throw new Error("SECRET_CONTRACT_ADDRESS invalid");
 }

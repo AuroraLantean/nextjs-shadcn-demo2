@@ -1,11 +1,16 @@
+/** biome-ignore-all lint/correctness/useHookAtTopLevel: <explanation> */
 "use client";
-import { useNetworkVariable } from "@/config/network-func";
 import { useSuiClientQuery } from "@mysten/dapp-kit";
 import type { SuiObjectData } from "@mysten/sui/client";
-import { ll } from "@/lib/utils";
 import { ProposalItem } from "@proposal/proposal-item";
-import { parseVoteNfts, type VoteNft, type SuiID } from "@/lib/sui-funcs";
-import { useVoteNfts } from "@/lib/sui-funcs";
+import { useNetworkVariable } from "@/config/network-func";
+import {
+	parseVoteNfts,
+	type SuiID,
+	useVoteNfts,
+	type VoteNft,
+} from "@/lib/sui-funcs";
+import { ll } from "@/lib/utils";
 
 const ProposalView = () => {
 	const proposalbox_id = useNetworkVariable("proposalbox");

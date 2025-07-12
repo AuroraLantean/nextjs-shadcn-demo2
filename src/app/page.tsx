@@ -1,5 +1,3 @@
-import { Button } from "@ui/button";
-
 //import Hero from "@components/hero";
 //import homeImg from "@public/home.jpg";
 type Props = {};

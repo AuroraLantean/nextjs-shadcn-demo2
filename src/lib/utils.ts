@@ -7,13 +7,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const ll = console.log;
-declare global {
-	interface Window {
-		keplr: any;
-		getEnigmaUtils: any;
-		getOfflineSigner: any;
-	}
-}
 
 //--------------== Time
 export const formatUnixTime = (timestampMilisec: number) => {
